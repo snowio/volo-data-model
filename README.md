@@ -41,23 +41,24 @@ Data model for the Volo API
 - SnowIO DataModel Model Example
 
 ```php
-        use SnowIO\VoloDataModel\Command\ImportProductDataCommand;
-        use SnowIO\VoloDataModel\ProductImport\ImportData;
-        use SnowIO\VoloDataModel\ProductImport\ImportRow;
-        use SnowIO\VoloDataModel\ProductImport\ImportRowCollection;
-        use SnowIO\VoloDataModel\ProductImport\ImportFieldSet;
-        use SnowIO\VoloDataModel\ProductImport\ImportField;
-        use SnowIO\VoloDataModel\ProductImport\Layout;
-        use SnowIO\VoloDataModel\ProductImport\LayoutField;
-        
-        $layout = Layout::of('Custom Layout', 'StockNumber')
-            ->withLayoutField(LayoutField::of('StockNumber'));
-        $importRowCollection = ImportRowCollection::of([
-            ImportRow::create()
-                ->withImportFields(ImportFieldSet::of([
-                    ImportField::of('StockNumber', '3827893279-IK89'),
-                ])),
-        ]);
-        $importData = ImportData::create()->withImportRows($importRowCollection);
-        $importProductDataCommand = ImportProductDataCommand::of($layout, $importData);
+ <?php
+    use SnowIO\VoloDataModel\Command\ImportProductDataCommand;
+    use SnowIO\VoloDataModel\ProductImport\ImportData;
+    use SnowIO\VoloDataModel\ProductImport\ImportRow;
+    use SnowIO\VoloDataModel\ProductImport\ImportRowCollection;
+    use SnowIO\VoloDataModel\ProductImport\ImportFieldSet;
+    use SnowIO\VoloDataModel\ProductImport\ImportField;
+    use SnowIO\VoloDataModel\ProductImport\Layout;
+    use SnowIO\VoloDataModel\ProductImport\LayoutField;
+    
+    $layout = Layout::of('Custom Layout', 'StockNumber')
+        ->withLayoutField(LayoutField::of('StockNumber'));
+    $importRowCollection = ImportRowCollection::of([
+        ImportRow::create()
+            ->withImportFields(ImportFieldSet::of([
+                ImportField::of('StockNumber', '3827893279-IK89'),
+            ])),
+    ]);
+    $importData = ImportData::create()->withImportRows($importRowCollection);
+    $importProductDataCommand = ImportProductDataCommand::of($layout, $importData);
 ```
