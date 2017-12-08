@@ -14,7 +14,14 @@ class ImportFieldTest extends TestCase
         self::assertEquals([
             'name' => 'StockNumber',
             'value' => '12022014-17',
-            //todo need to understand the type of fields
+        ], $importField->toJson());
+
+        $importField = $importField->withType('UNUSED');
+
+        self::assertEquals([
+            'name' => 'StockNumber',
+            'value' => '12022014-17',
+            'type' => 'UNUSED',
         ], $importField->toJson());
     }
 

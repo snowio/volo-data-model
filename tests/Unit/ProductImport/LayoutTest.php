@@ -94,6 +94,12 @@ class LayoutTest extends TestCase
             ->withSkipNewProduct(false);
 
         self::assertEquals('TestLayout', $layout->getName());
+        self::assertEquals('StockNumber', $layout->getKeyField());
+        self::assertTrue(LayoutFieldSet::of([
+            LayoutField::of('StockNumber'),
+            LayoutField::of('UPC'),
+            LayoutField::of('CostEach')
+        ])->equals($layout->getLayoutFields()));
         self::assertTrue(LayoutField::of('StockNumber')->equals($layout->getLayoutField('StockNumber')));
         self::assertTrue(LayoutField::of('UPC')->equals($layout->getLayoutField('UPC')));
         self::assertTrue(LayoutField::of('CostEach')->equals($layout->getLayoutField('CostEach')));
@@ -138,7 +144,7 @@ class LayoutTest extends TestCase
     /**
      * @expectedException \SnowIO\VoloDataModel\ProductImport\LayoutException
      */
-    public function testValidationWithInvalidImport()
+    public function testValidationWithImportThatHasWrongKeyField()
     {
         $importData = ImportData::create()
             ->withImportRow(
@@ -147,6 +153,42 @@ class LayoutTest extends TestCase
                         ImportField::of('Title', '89240803-K23'),
                         ImportField::of('UPC', '8924h380'),
                         ImportField::of('CostEach', '5.43'),
+                    ]))
+            )
+            ->withImportRow(
+                ImportRow::create()
+                    ->withImportFields(ImportFieldSet::of([
+                        ImportField::of('StockNumber', '89240803-K24'),
+                        ImportField::of('UPC', '8924h381'),
+                        ImportField::of('CostEach', '6.43'),
+                    ]))
+            );
+
+        $layout = Layout::of('TestLayout', 'StockNumber')
+            ->withLayoutFields(LayoutFieldSet::of([
+                LayoutField::of('StockNumber'),
+                LayoutField::of('UPC'),
+                LayoutField::of('CostEach'),
+            ]));
+
+        $layout->validate($importData);
+    }
+
+    /**
+     * @expectedException \SnowIO\VoloDataModel\ProductImport\LayoutException
+     * todo Need to look into whether this will be affected by the principle of order
+     * we still do not know if the layout is but a map for the fields in the import field by order
+     * or a the list of field names and order provide a form of validation for the import fields
+     */
+    public function testValidationWithImportThatHasInvalidFields()
+    {
+        $importData = ImportData::create()
+            ->withImportRow(
+                ImportRow::create()
+                    ->withImportFields(ImportFieldSet::of([
+                        ImportField::of('StockNumber', '89240803-K23'),
+                        ImportField::of('UPC', '8924h380'),
+                        ImportField::of('SalePrice', '5.43'),
                     ]))
             )
             ->withImportRow(

@@ -5,6 +5,7 @@ namespace SnowIO\VoloDataModel\Test\Unit\ImportDataTest;
 use PHPUnit\Framework\TestCase;
 use SnowIO\VoloDataModel\ProductImport\ImportData;
 use SnowIO\VoloDataModel\ProductImport\ImportField;
+use SnowIO\VoloDataModel\ProductImport\ImportFieldSet;
 use SnowIO\VoloDataModel\ProductImport\ImportRow;
 
 class ImportRowTest extends TestCase
@@ -46,6 +47,9 @@ class ImportRowTest extends TestCase
             ->withImportField(ImportField::of('StockNumber', '12022014-17'));
         self::assertTrue(ImportField::of('StockNumber', '12022014-17')
             ->equals($importRow->getImportField('StockNumber')));
+        self::assertTrue(ImportFieldSet::of([
+            ImportField::of('StockNumber', '12022014-17')
+        ])->equals($importRow->getImportFields()));
     }
 
     public function testEquals()

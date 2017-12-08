@@ -172,10 +172,11 @@ final class Layout
     private function checkImportRowsHaveLayoutFields(ImportRowCollection $importRows): void
     {
         foreach ($this->layoutFields as $layoutField) {
+            /** @var ImportRow $importRow */
             foreach ($importRows as $importRow) {
                 if (!$importRow->hasField($layoutField->getName())) {
                     $rowKeyFieldValue = $importRow->getImportField($this->keyField);
-                    throw new LayoutException("Field `{$layoutField->getName()}` not found in import row with {$this->keyField} of {$rowKeyFieldValue}");
+                    throw new LayoutException("Field `{$layoutField->getName()}` not found in import row with {$this->keyField} of {$rowKeyFieldValue->getName()}");
                 }
             }
         }
