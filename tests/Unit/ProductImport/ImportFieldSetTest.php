@@ -48,4 +48,23 @@ class ImportFieldSetTest extends TestCase
             ]
         ], $importFieldSet->toJson());
     }
+
+    public function testFromJson()
+    {
+        $importFieldSet = ImportFieldSet::fromJson([
+            [
+                'name' => 'StockNumber',
+                'value' => '98h39387927',
+            ],
+            [
+                'name' => 'UPC',
+                'value' => 'GGHURNRUIITY',
+            ]
+        ]);
+
+        self::assertTrue(ImportFieldSet::of([
+            ImportField::of('StockNumber', '98h39387927'),
+            ImportField::of('UPC', 'GGHURNRUIITY'),
+        ])->equals($importFieldSet));
+    }
 }

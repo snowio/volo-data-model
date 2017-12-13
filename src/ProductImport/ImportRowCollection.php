@@ -15,6 +15,16 @@ final class ImportRowCollection implements \IteratorAggregate
         return $result;
     }
 
+    public static function fromJson(array $json): self
+    {
+        $result = self::create();
+        foreach ($json as $importRowJson) {
+            $result->items[] = ImportRow::fromJson($importRowJson);
+        }
+
+        return $result;
+    }
+
     public function toJson(): array
     {
         return \array_map(function (ImportRow $importRow) {

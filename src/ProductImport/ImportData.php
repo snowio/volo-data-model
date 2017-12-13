@@ -12,6 +12,13 @@ final class ImportData
         return $importData;
     }
 
+    public static function fromJson(array $json): self
+    {
+        $importData = new self;
+        $importData->importRows = ImportRowCollection::fromJson($json['importRow']);
+        return $importData;
+    }
+
     public function withImportRow(ImportRow $importRow): self
     {
         $result = clone $this;

@@ -16,6 +16,11 @@ final class ImportProductDataCommand
         return $importProductDataCommand;
     }
 
+    public static function fromJson(array $json): self
+    {
+        return self::of(Layout::fromJson($json['layout']), ImportData::fromJson($json['importData']));
+    }
+
     public function getLayout(): Layout
     {
         return $this->layout;

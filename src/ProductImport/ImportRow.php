@@ -11,6 +11,13 @@ final class ImportRow
         return $importRow;
     }
 
+    public static function fromJson(array $json): self
+    {
+        $result = new self;
+        $result->importFields = ImportFieldSet::fromJson($json['importField']);
+        return $result;
+    }
+
     public function withImportField(ImportField $field): self
     {
         $result = clone $this;

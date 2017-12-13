@@ -10,6 +10,35 @@ use SnowIO\VoloDataModel\ProductImport\ImportRow;
 
 class ImportRowTest extends TestCase
 {
+    public function testFromJson()
+    {
+        $importRow = ImportRow::fromJson([
+            'importField' => [
+                [
+                    'name' => 'StockNumber',
+                    'value' => '12022014-17',
+                ],
+                [
+                    'name' => 'ManufacturerNumber',
+                    'value' => 'MANU-NAHEUJE-93',
+                ],
+                [
+                    'name' => 'Color',
+                    'value' => 'blue',
+                ],
+                [
+                    'name' => 'Size',
+                    'value' => 'large',
+                ]
+            ],
+        ]);
+
+        self::assertTrue(ImportRow::create()
+            ->withImportField(ImportField::of('StockNumber', '12022014-17'))
+            ->withImportField(ImportField::of('ManufacturerNumber', 'MANU-NAHEUJE-93'))
+            ->withImportField(ImportField::of('Color', 'blue'))
+            ->withImportField(ImportField::of('Size', 'large'))->equals($importRow));
+    }
 
     public function testToJson()
     {

@@ -13,6 +13,20 @@ final class Layout
         return $layout;
     }
 
+    public static function fromJson(array $json): self
+    {
+        $result = new self;
+        $result->layoutFields = LayoutFieldSet::fromJson($json['layoutFields']);
+        $result->name = $json['layoutName'];
+        $result->keyField = $json['keyField'];
+        $result->skipExistingProduct = $json['skipExistingProduct'] ?? null;
+        $result->skipNewProduct = $json['skipNewProduct'] ?? null;
+        $result->flagForNewProducts = $json['flagForNewProducts'] ?? null;
+        $result->sellerCentralCategory = $json['sellerCentralCategory'] ?? null;
+        $result->sellerCentralSubCategory = $json['sellerCentralSubCategory'] ?? null;
+        return $result;
+    }
+
     public function validate(ImportData $importData): void
     {
         $this->checkImportRowsHaveKeyField($importData->getImportRows());

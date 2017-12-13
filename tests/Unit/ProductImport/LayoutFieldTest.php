@@ -8,6 +8,23 @@ use SnowIO\VoloDataModel\ProductImport\LayoutField;
 
 class LayoutFieldTest extends TestCase
 {
+    public function testFromJson()
+    {
+        $layoutField = LayoutField::fromJson([
+            'name' => 'StockNumber',
+            'type' => 'SOME_TYPE',
+            'value' => 'VALUE',
+        ]);
+
+        self::assertTrue(
+            LayoutField::of('StockNumber')
+                ->withType('SOME_TYPE')
+                ->withValue('VALUE')
+                ->equals($layoutField)
+        );
+    }
+
+
     public function testToJson()
     {
         /** @var LayoutField $layoutField */

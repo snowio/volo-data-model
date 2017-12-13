@@ -23,8 +23,17 @@ final class ImportFieldSet implements \IteratorAggregate
     public function toJson(): array
     {
         return \array_map(function (ImportField $importField) {
-            return $importField->toJson();
-        }, array_values($this->items));
+                return $importField->toJson();
+            }, array_values($this->items));
+    }
+
+    public static function fromJson(array $json): self
+    {
+        $result = self::create();
+        foreach ($json as $importField) {
+            $result = $result->with(ImportField::fromJson($importField));
+        }
+        return $result;
     }
 
     private static function getKey(ImportField $importField): string

@@ -66,4 +66,9 @@ trait CollectionTrait
     }
 
     private $items = [];
+
+    private function __construct()
+    {
+
+    }
 }

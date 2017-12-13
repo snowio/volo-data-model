@@ -13,6 +13,15 @@ final class ImportField
         return $importField;
     }
 
+    public static function fromJson(array $json): self
+    {
+        $result = new self;
+        $result->name = $json['name'];
+        $result->value = $json['value'];
+        $result->type = $json['type'] ?? null;
+        return $result;
+    }
+
     public function getName(): string
     {
         return $this->name;
@@ -37,7 +46,7 @@ final class ImportField
         return $result;
     }
 
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }

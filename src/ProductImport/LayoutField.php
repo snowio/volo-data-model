@@ -11,6 +11,15 @@ final class LayoutField
         return $layoutField;
     }
 
+    public static function fromJson(array $json): self
+    {
+        $result = new self;
+        $result->name = $json['name'];
+        $result->value = $json['value'] ?? null;
+        $result->type = $json['type'] ?? null;
+        return $result;
+    }
+
     public function getName(): string
     {
         return $this->name;
@@ -23,7 +32,7 @@ final class LayoutField
         return $result;
     }
 
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->value;
     }
@@ -35,7 +44,7 @@ final class LayoutField
         return $result;
     }
 
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }

@@ -13,6 +13,34 @@ use SnowIO\VoloDataModel\ProductImport\LayoutFieldSet;
 
 class LayoutTest extends TestCase
 {
+    public function testFromJson()
+    {
+        $layout = Layout::fromJson($json = [
+            "layoutFields" => [
+                "layoutField" => [
+                    [
+                        "name" => "StockNumber"
+                    ],
+                    [
+                        "name" => "UPC"
+                    ],
+                    [
+                        "name" => "CostEach"
+                    ],
+                ]
+            ],
+            "layoutName" => 'TestLayout',
+            "keyField" => 'StockNumber',
+        ]);
+
+        self::assertEquals($json, $layout->toJson());
+        self::assertTrue(Layout::of('TestLayout', 'StockNumber')
+            ->withLayoutField(LayoutField::of('StockNumber'))
+            ->withLayoutField(LayoutField::of('UPC'))
+            ->withLayoutField(LayoutField::of('CostEach'))
+            ->equals($layout));
+    }
+
     public function testToJson()
     {
         /** @var Layout $layout */

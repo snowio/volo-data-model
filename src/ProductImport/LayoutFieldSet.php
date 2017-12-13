@@ -27,6 +27,16 @@ final class LayoutFieldSet implements \IteratorAggregate
         }, array_values($this->items));
     }
 
+    public static function fromJson(array $json): self
+    {
+        $result = self::create();
+        foreach ($json['layoutField'] as $layoutField) {
+            $result = $result->with(LayoutField::fromJson($layoutField));
+        }
+
+        return $result;
+    }
+
     private static function getKey(LayoutField $layoutField): string
     {
         return $layoutField->getName();

@@ -39,4 +39,23 @@ class LayoutFieldSetTest extends TestCase
             ]
         ], $layoutFieldSet->toJson());
     }
+
+    public function testFromJson()
+    {
+        $layoutFieldSet = LayoutFieldSet::fromJson([
+            'layoutField' => [
+                [
+                    'name' => 'StockNumber'
+                ],
+                [
+                    'name' => 'UPC'
+                ]
+            ]
+        ]);
+
+        self::assertTrue(LayoutFieldSet::of([
+            LayoutField::of('StockNumber'),
+            LayoutField::of('UPC')
+        ])->equals($layoutFieldSet));
+    }
 }

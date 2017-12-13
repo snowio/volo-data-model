@@ -105,4 +105,66 @@ class ImportRowCollectionTest extends TestCase
             ])),
         ])->equals($importRowCollection));
     }
+
+    public function testToJson()
+    {
+        $importRowCollection = ImportRowCollection::of([
+            ImportRow::create()->withImportFields(ImportFieldSet::of([
+                ImportField::of('StockNumber', '98h39387927'),
+                ImportField::of('UPC', 'GGHURNRUIITY'),
+                ImportField::of('ManufactureNumber', 'MNAHUD-3328_U'),
+            ]))
+        ]);
+
+        self::assertEquals([
+            [
+                'importField' => [
+                    [
+                        'name' => 'StockNumber',
+                        'value' => '98h39387927',
+                    ],
+                    [
+                        'name' => 'UPC',
+                        'value' => 'GGHURNRUIITY',
+                    ],
+                    [
+                        'name' => 'ManufactureNumber',
+                        'value' => 'MNAHUD-3328_U',
+                    ],
+                ]
+            ]
+        ], $importRowCollection->toJson());
+
+    }
+
+    public function testFromJson()
+    {
+        $importRowCollection = ImportRowCollection::fromJson([
+            [
+                'importField' => [
+                    [
+                        'name' => 'StockNumber',
+                        'value' => '98h39387927',
+                    ],
+                    [
+                        'name' => 'UPC',
+                        'value' => 'GGHURNRUIITY',
+                    ],
+                    [
+                        'name' => 'ManufactureNumber',
+                        'value' => 'MNAHUD-3328_U',
+                    ],
+                ],
+            ]
+        ]);
+
+        self::assertTrue(ImportRowCollection::of([
+            ImportRow::create()->withImportFields(ImportFieldSet::of([
+                ImportField::of('StockNumber', '98h39387927'),
+                ImportField::of('UPC', 'GGHURNRUIITY'),
+                ImportField::of('ManufactureNumber', 'MNAHUD-3328_U'),
+            ]))
+        ])->equals($importRowCollection));
+    }
+
 }
