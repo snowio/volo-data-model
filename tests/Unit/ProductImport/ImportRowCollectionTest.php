@@ -166,5 +166,4 @@ class ImportRowCollectionTest extends TestCase
             ]))
         ])->equals($importRowCollection));
     }
-
 }

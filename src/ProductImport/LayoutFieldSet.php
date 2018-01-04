@@ -24,7 +24,7 @@ final class LayoutFieldSet implements \IteratorAggregate
     {
         return \array_map(function (LayoutField $layoutField) {
             return $layoutField->toJson();
-        }, array_values($this->items));
+        }, \array_values($this->items));
     }
 
     public static function fromJson(array $json): self
