@@ -16,6 +16,11 @@ trait CollectionTrait
         return $collection;
     }
 
+    public function isEmpty()
+    {
+        return count($this->items) === 0;
+    }
+
     public function getIterator(): \Iterator
     {
         foreach ($this->items as $item) {
