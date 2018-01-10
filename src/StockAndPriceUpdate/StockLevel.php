@@ -16,7 +16,7 @@ final class StockLevel
     {
         StockUpdateTypes::validateStockUpdateType($json['stockUpdateType']);
         $result = new self;
-        $result->quantity = $json['quantity'];
+        $result->quantity = (int) $json['quantity'];
         $result->location = $json['location'] ?? null;
         $result->stockUpdateType = $json['stockUpdateType'] ?? null;
         return $result;
