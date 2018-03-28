@@ -3,18 +3,18 @@ declare(strict_types = 1);
 namespace SnowIO\VoloDataModel\Test\Unit\OrderUpdate;
 
 use PHPUnit\Framework\TestCase;
-use SnowIO\VoloDataModel\OrderUpdate\OrderUpdateData;
-use SnowIO\VoloDataModel\ProductImport\ImportData;
+use SnowIO\VoloDataModel\OrderUpdate\OrderStatus;
+use SnowIO\VoloDataModel\OrderUpdate\OrderUpdate;
 use SnowIO\VoloDataModel\ProductImport\ImportField;
 use SnowIO\VoloDataModel\ProductImport\ImportRow;
 
-class OrderUpdateDataTest extends TestCase
+class OrderUpdateTest extends TestCase
 {
     public function testFromJson()
     {
-        $orderUpdateData = OrderUpdateData::fromJson([
+        $orderUpdateData = OrderUpdate::fromJson([
             "espOrderNo" => 0,
-            "orderStatus" => "WAITING_FOR_DELIVERY",
+            "orderStatus" => OrderStatus::WAITING_FOR_DELIVERY,
             "onHoldNotes" => "string",
             "courier" => "string",
             "courierService" => "string",
@@ -49,9 +49,9 @@ class OrderUpdateDataTest extends TestCase
             "tradeSale" => true,
             "actualCourierCost" => 0
         ]);
-        $other = OrderUpdateData::create()
+        $other = OrderUpdate::create()
             ->withEspOrderNo(0)
-            ->withOrderStatus("WAITING_FOR_DELIVERY")
+            ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
             ->withOnHoldNotes("string")
             ->withCourier("string")
             ->withCourierService("string")
@@ -91,9 +91,9 @@ class OrderUpdateDataTest extends TestCase
 
     public function testToJson()
     {
-        $orderData = OrderUpdateData::create()
+        $orderData = OrderUpdate::create()
             ->withEspOrderNo(0)
-            ->withOrderStatus("WAITING_FOR_DELIVERY")
+            ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
             ->withOnHoldNotes("string")
             ->withCourier("string")
             ->withCourierService("string")
@@ -129,7 +129,7 @@ class OrderUpdateDataTest extends TestCase
             ->withActualCourierCost(0);
         self::assertEquals([
             "espOrderNo" => 0,
-            "orderStatus" => "WAITING_FOR_DELIVERY",
+            "orderStatus" => OrderStatus::WAITING_FOR_DELIVERY,
             "onHoldNotes" => "string",
             "courier" => "string",
             "courierService" => "string",
@@ -169,23 +169,23 @@ class OrderUpdateDataTest extends TestCase
 
     public function testEquals()
     {
-        $orderData = OrderUpdateData::create()
+        $orderData = OrderUpdate::create()
             ->withEspOrderNo(28393283)
-            ->withOrderStatus("WAITING_FOR_DELIVERY")
+            ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
             ->withOnHoldNotes("string")
             ->withCourier("string");
 
-        self::assertTrue($orderData->equals(OrderUpdateData::create()
+        self::assertTrue($orderData->equals(OrderUpdate::create()
             ->withEspOrderNo(28393283)
-            ->withOrderStatus("WAITING_FOR_DELIVERY")
+            ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
             ->withOnHoldNotes("string")
             ->withCourier("string")));
-        self::assertFalse($orderData->equals(OrderUpdateData::create()
+        self::assertFalse($orderData->equals(OrderUpdate::create()
             ->withEspOrderNo(28393283)
-            ->withOrderStatus("WAITING_FOR_DELIVERY")
+            ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
             ->withOnHoldNotes("string")
             ->withCourier("stering")));
-        self::assertFalse($orderData->equals(OrderUpdateData::create()
+        self::assertFalse($orderData->equals(OrderUpdate::create()
             ->withEspOrderNo(28393283)
             ->withOnHoldNotes("string")
             ->withCourier("stering")));

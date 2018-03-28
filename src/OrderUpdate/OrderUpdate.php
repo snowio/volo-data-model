@@ -3,12 +3,8 @@ declare(strict_types = 1);
 
 namespace SnowIO\VoloDataModel\OrderUpdate;
 
-class OrderUpdateData
+final class OrderUpdate
 {
-    const WAITING_FOR_DELIVERY = "WAITING_FOR_DELIVERY";
-    const DELIVERED = "DELIVERED";
-    const CANCELLED = "CANCELLED";
-    const ON_HOLD = "ON_HOLD";
 
     public static function create(): self
     {
@@ -29,10 +25,11 @@ class OrderUpdateData
         return $result;
     }
 
-    public function withOrderStatus(string $espOrderStatus): self
+    public function withOrderStatus(string $orderStatus): self
     {
+        OrderStatus::validateStatus($orderStatus);
         $result = clone $this;
-        $result->json['orderStatus'] = $espOrderStatus;
+        $result->json['orderStatus'] = $orderStatus;
         return $result;
     }
 
