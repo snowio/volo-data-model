@@ -4,39 +4,12 @@
 [![codecov](https://codecov.io/gh/snowio/volo-data-model/branch/master/graph/badge.svg)](https://codecov.io/gh/snowio/volo-data-model)
 
 Data model for the Volo API 
-- Currently supports only ProductImport request data
+Currently supports: 
+- ProductImport request data
+- Update Order Request data
 
 ## ProductImport
 
-- Example Request json payload that is sent to Volo more information about the request [here](https://developer.volocommerce.io/#operation/importProducts)
-
-```json 
-{
-    "layout": {
-        "layoutName": "Custom Layout",
-        "layoutFields": {
-            "layoutField": [
-                {
-                    "name": "StockNumber"
-                }
-            ]
-        },
-        "keyField": "StockNumber"
-    },
-    "importData": {
-        "importRow": [
-            {
-                "importField": [
-                    {
-                        "name": "StockNumber",
-                        "value": "3827893279-IK89"
-                    }
-                ]
-            }
-        ]
-    }
-}
-```
 
 - SnowIO DataModel Model Example
 
@@ -63,69 +36,27 @@ Data model for the Volo API
     $importProductDataCommand = ImportProductDataCommand::of($layout, $importData);
 ```
 
-## StockAndPriceUpdate
+## OrderUpdate 
 
-- Example request json payload this sent to volo more information about the request [here](https://developer.volocommerce.io/#operation/updateProducts)
-
-```json
-{
-  "productUpdate": [
-    {
-      "stockNumber": "string",
-      "prices": {
-        "price": [
-          {
-            "name": "EBAY_BUY_NOW_PRICE",
-            "value": 0,
-            "accountName": "string"
-          }
-        ]
-      },
-      "stockLevel": {
-        "location": "string",
-        "quantity": 0,
-        "stockUpdateType": "DELIVERY"
-      },
-      "costPrice": 0
-    }
-  ]
-}
-```
-
-- SnowIO DataModel Model Example
+- SnowIO DataModel Example
 
 ```php
-<?php 
-    use SnowIO\VoloDataModel\Command\UpdateStockAndPriceCommand;
-    use SnowIO\VoloDataModel\StockAndPriceUpdate\Price;
-    use SnowIO\VoloDataModel\StockAndPriceUpdate\PriceCollection;
-    use SnowIO\VoloDataModel\StockAndPriceUpdate\PriceNames;
-    use SnowIO\VoloDataModel\StockAndPriceUpdate\ProductUpdate;
-    use SnowIO\VoloDataModel\StockAndPriceUpdate\ProductUpdateCollection;
-    use SnowIO\VoloDataModel\StockAndPriceUpdate\StockLevel;
-    use SnowIO\VoloDataModel\StockAndPriceUpdate\StockUpdateTypes;
-    $updateStockAndPriceCommand = UpdateStockAndPriceCommand::of(ProductUpdateCollection::of([
-        ProductUpdate::of('89239837-8N87382')
-            ->withPrices(PriceCollection::of(
-                [
-                    Price::of(600.60),
-                    Price::of(350.89)
-                        ->withName(PriceNames::PLAY_PRICE)
-                        ->withAccountName('testPlayPrice'),
-                ]
-            ))->withStockLevel(StockLevel::of(5000)
-                ->withLocation("WAREHOUSE")
-                ->withStockUpdateType(StockUpdateTypes::STOCK_CHECK_ADJUST_COMMITTED))
-            ->withCostPrice(203.99),
-        ProductUpdate::of('89239837-8N87389')
-            ->withPrices(PriceCollection::of(
-                [
-                    Price::of(700.94)
-                        ->withName(PriceNames::AMAZON_PRICE)
-                        ->withAccountName('testAmazonPrice'),
-                    Price::of(450.89),
-                ]
-            )),
-    ]));
-       
+<?php
+use SnowIO\VoloDataModel\Command\UpdateOrderCommand;
+use SnowIO\VoloDataModel\OrderUpdate\OrderStatus;
+use SnowIO\VoloDataModel\OrderUpdate\OrderUpdate;
+use SnowIO\VoloDataModel\OrderUpdate\OrderUpdateCollection;
+    
+    $updateOrderCommand = UpdateOrderCommand::of(OrderUpdateCollection::of([
+            OrderUpdate::create()
+                ->withEspOrderNo(28393283)
+                ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
+                ->withOnHoldNotes("string")
+                ->withCourier("string"),
+            OrderUpdate::create()
+                ->withEspOrderNo(76863823)
+                ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
+                ->withOnHoldNotes("string")
+                ->withCourier("string"),
+     ]));
 ```
