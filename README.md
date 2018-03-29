@@ -42,11 +42,11 @@ Currently supports:
 
 ```php
 <?php
-use SnowIO\VoloDataModel\Command\UpdateOrderCommand;
-use SnowIO\VoloDataModel\OrderUpdate\OrderStatus;
-use SnowIO\VoloDataModel\OrderUpdate\OrderUpdate;
-use SnowIO\VoloDataModel\OrderUpdate\OrderUpdateCollection;
-    
+    use SnowIO\VoloDataModel\Command\UpdateOrderCommand;
+    use SnowIO\VoloDataModel\OrderUpdate\OrderStatus;
+    use SnowIO\VoloDataModel\OrderUpdate\OrderUpdate;
+    use SnowIO\VoloDataModel\OrderUpdate\OrderUpdateCollection;
+        
     $updateOrderCommand = UpdateOrderCommand::of(OrderUpdateCollection::of([
             OrderUpdate::create()
                 ->withEspOrderNo(28393283)
