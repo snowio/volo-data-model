@@ -13,11 +13,6 @@ final class Order
         return $order;
     }
 
-    public static function create(): self
-    {
-        return new self();
-    }
-
     private function __construct(int $espOrderNo)
     {
         $this->espOrderNo = $espOrderNo;
@@ -160,7 +155,6 @@ final class Order
             ->withPayments(
                 PaymentSet::fromJson($json['payments'] ?? [])
             );
-
     }
 
     private $orderType;
@@ -225,696 +219,696 @@ final class Order
     private $orderCredits;
     private $payments;
 
-    public function getOrderType()
+    public function getOrderType(): string
     {
         return $this->orderType;
     }
 
-    public function withOrderType($orderType): self
+    public function withOrderType(string $orderType): self
     {
         $result = clone $this;
         $result->orderType = $orderType;
         return $result;
     }
 
-    public function getOrderSource()
+    public function getOrderSource(): string
     {
         return $this->orderSource;
     }
 
-    public function withOrderSource($orderSource): self
+    public function withOrderSource(string $orderSource): self
     {
         $result = clone $this;
         $result->orderSource = $orderSource;
         return $result;
     }
 
-    public function getEspOrderNo()
+    public function getEspOrderNo(): int
     {
         return $this->espOrderNo;
     }
 
-    public function withEspOrderNo($espOrderNo): self
+    public function withEspOrderNo(int $espOrderNo): self
     {
         $result = clone $this;
         $result->espOrderNo = $espOrderNo;
         return $result;
     }
 
-    public function getInvoiceNumber()
+    public function getInvoiceNumber(): string
     {
         return $this->invoiceNumber;
     }
 
-    public function withInvoiceNumber($invoiceNumber): self
+    public function withInvoiceNumber(string $invoiceNumber): self
     {
         $result = clone $this;
         $result->invoiceNumber = $invoiceNumber;
         return $result;
     }
 
-    public function getExternalReference()
+    public function getExternalReference(): string
     {
         return $this->externalReference;
     }
 
-    public function withExternalReference($externalReference): self
+    public function withExternalReference(string $externalReference): self
     {
         $result = clone $this;
         $result->externalReference = $externalReference;
         return $result;
     }
 
-    public function getDate()
+    public function getDate(): string
     {
         return $this->date;
     }
 
-    public function withDate($date): self
+    public function withDate(string $date): self
     {
         $result = clone $this;
         $result->date = $date;
         return $result;
     }
 
-    public function getCustomerCompany()
+    public function getCustomerCompany():string
     {
         return $this->customerCompany;
     }
 
-    public function withCustomerCompany($customerCompany): self
+    public function withCustomerCompany(string $customerCompany): self
     {
         $result = clone $this;
         $result->customerCompany = $customerCompany;
         return $result;
     }
 
-    public function getCustomerName()
+    public function getCustomerName(): string
     {
         return $this->customerName;
     }
 
-    public function withCustomerName($customerName): self
+    public function withCustomerName(string $customerName): self
     {
         $result = clone $this;
         $result->customerName = $customerName;
         return $result;
     }
 
-    public function getCustomerAddress1()
+    public function getCustomerAddress1(): string
     {
         return $this->customerAddress1;
     }
 
-    public function withCustomerAddress1($customerAddress1): self
+    public function withCustomerAddress1(string $customerAddress1): self
     {
         $result = clone $this;
         $result->customerAddress1 = $customerAddress1;
         return $result;
     }
 
-    public function getCustomerAddress2()
+    public function getCustomerAddress2(): string
     {
         return $this->customerAddress2;
     }
 
-    public function withCustomerAddress2($customerAddress2): self
+    public function withCustomerAddress2(string $customerAddress2): self
     {
         $result = clone $this;
         $result->customerAddress2 = $customerAddress2;
         return $result;
     }
 
-    public function getCustomerAddress3()
+    public function getCustomerAddress3(): string
     {
         return $this->customerAddress3;
     }
 
-    public function withCustomerAddress3($customerAddress3): self
+    public function withCustomerAddress3(string $customerAddress3): self
     {
         $result = clone $this;
         $result->customerAddress3 = $customerAddress3;
         return $result;
     }
 
-    public function getCustomerCity()
+    public function getCustomerCity(): string
     {
         return $this->customerCity;
     }
 
-    public function withCustomerCity($customerCity): self
+    public function withCustomerCity(string $customerCity): self
     {
         $result = clone $this;
         $result->customerCity = $customerCity;
         return $result;
     }
 
-    public function getCustomerCounty()
+    public function getCustomerCounty(): string
     {
         return $this->customerCounty;
     }
 
-    public function withCustomerCounty($customerCounty): self
+    public function withCustomerCounty(string $customerCounty): self
     {
         $result = clone $this;
         $result->customerCounty = $customerCounty;
         return $result;
     }
 
-    public function getCustomerPostcode()
+    public function getCustomerPostcode(): string
     {
         return $this->customerPostcode;
     }
 
-    public function withCustomerPostcode($customerPostcode): self
+    public function withCustomerPostcode(string $customerPostcode): self
     {
         $result = clone $this;
         $result->customerPostcode = $customerPostcode;
         return $result;
     }
 
-    public function getCustomerCountry()
+    public function getCustomerCountry(): string
     {
         return $this->customerCountry;
     }
 
-    public function withCustomerCountry($customerCountry): self
+    public function withCustomerCountry(string $customerCountry): self
     {
         $result = clone $this;
         $result->customerCountry = $customerCountry;
         return $result;
     }
 
-    public function getCustomerEmail()
+    public function getCustomerEmail(): string
     {
         return $this->customerEmail;
     }
 
-    public function withCustomerEmail($customerEmail): self
+    public function withCustomerEmail(string $customerEmail): self
     {
         $result = clone $this;
         $result->customerEmail = $customerEmail;
         return $result;
     }
 
-    public function getCustomerTelephone()
+    public function getCustomerTelephone(): string
     {
         return $this->customerTelephone;
     }
 
-    public function withCustomerTelephone($customerTelephone): self
+    public function withCustomerTelephone(string $customerTelephone): self
     {
         $result = clone $this;
         $result->customerTelephone = $customerTelephone;
         return $result;
     }
 
-    public function getCustomerFax()
+    public function getCustomerFax(): string
     {
         return $this->customerFax;
     }
 
-    public function withCustomerFax($customerFax): self
+    public function withCustomerFax(string $customerFax): self
     {
         $result = clone $this;
         $result->customerFax = $customerFax;
         return $result;
     }
 
-    public function getCustomerReference()
+    public function getCustomerReference(): string
     {
         return $this->customerReference;
     }
 
-    public function withCustomerReference($customerReference): self
+    public function withCustomerReference(string $customerReference): self
     {
         $result = clone $this;
         $result->customerReference = $customerReference;
         return $result;
     }
 
-    public function getCustomerNotes()
+    public function getCustomerNotes(): string
     {
         return $this->customerNotes;
     }
 
-    public function withCustomerNotes($customerNotes): self
+    public function withCustomerNotes(string $customerNotes): self
     {
         $result = clone $this;
         $result->customerNotes = $customerNotes;
         return $result;
     }
 
-    public function getDeliveryCompany()
+    public function getDeliveryCompany(): string
     {
         return $this->deliveryCompany;
     }
 
-    public function withDeliveryCompany($deliveryCompany): self
+    public function withDeliveryCompany(string $deliveryCompany): self
     {
         $result = clone $this;
         $result->deliveryCompany = $deliveryCompany;
         return $result;
     }
 
-    public function getDeliveryName()
+    public function getDeliveryName(): string
     {
         return $this->deliveryName;
     }
 
-    public function withDeliveryName($deliveryName): self
+    public function withDeliveryName(string $deliveryName): self
     {
         $result = clone $this;
         $result->deliveryName = $deliveryName;
         return $result;
     }
 
-    public function getDeliveryAddress1()
+    public function getDeliveryAddress1(): string
     {
         return $this->deliveryAddress1;
     }
 
-    public function withDeliveryAddress1($deliveryAddress1): self
+    public function withDeliveryAddress1(string $deliveryAddress1): self
     {
         $result = clone $this;
         $result->deliveryAddress1 = $deliveryAddress1;
         return $result;
     }
 
-    public function getDeliveryAddress2()
+    public function getDeliveryAddress2(): string
     {
         return $this->deliveryAddress2;
     }
 
-    public function withDeliveryAddress2($deliveryAddress2): self
+    public function withDeliveryAddress2(string $deliveryAddress2): self
     {
         $result = clone $this;
         $result->deliveryAddress2 = $deliveryAddress2;
         return $result;
     }
 
-    public function getDeliveryAddress3()
+    public function getDeliveryAddress3(): string
     {
         return $this->deliveryAddress3;
     }
 
-    public function withDeliveryAddress3($deliveryAddress3): self
+    public function withDeliveryAddress3(string $deliveryAddress3): self
     {
         $result = clone $this;
         $result->deliveryAddress3 = $deliveryAddress3;
         return $result;
     }
 
-    public function getDeliveryCity()
+    public function getDeliveryCity(): string
     {
         return $this->deliveryCity;
     }
 
-    public function withDeliveryCity($deliveryCity): self
+    public function withDeliveryCity(string $deliveryCity): self
     {
         $result = clone $this;
         $result->deliveryCity = $deliveryCity;
         return $result;
     }
 
-    public function getDeliveryCounty()
+    public function getDeliveryCounty(): string
     {
         return $this->deliveryCounty;
     }
 
-    public function withDeliveryCounty($deliveryCounty): self
+    public function withDeliveryCounty(string $deliveryCounty): self
     {
         $result = clone $this;
         $result->deliveryCounty = $deliveryCounty;
         return $result;
     }
 
-    public function getDeliveryPostcode()
+    public function getDeliveryPostcode(): string
     {
         return $this->deliveryPostcode;
     }
 
-    public function withDeliveryPostcode($deliveryPostcode): self
+    public function withDeliveryPostcode(string $deliveryPostcode): self
     {
         $result = clone $this;
         $result->deliveryPostcode = $deliveryPostcode;
         return $result;
     }
 
-    public function getDeliveryCountry()
+    public function getDeliveryCountry(): string
     {
         return $this->deliveryCountry;
     }
 
-    public function withDeliveryCountry($deliveryCountry): self
+    public function withDeliveryCountry(string $deliveryCountry): self
     {
         $result = clone $this;
         $result->deliveryCountry = $deliveryCountry;
         return $result;
     }
 
-    public function getDeliveryTelephone()
+    public function getDeliveryTelephone(): string
     {
         return $this->deliveryTelephone;
     }
 
-    public function withDeliveryTelephone($deliveryTelephone): self
+    public function withDeliveryTelephone(string $deliveryTelephone): self
     {
         $result = clone $this;
         $result->deliveryTelephone = $deliveryTelephone;
         return $result;
     }
 
-    public function getShippingMethod()
+    public function getShippingMethod(): string
     {
         return $this->shippingMethod;
     }
 
-    public function withShippingMethod($shippingMethod): self
+    public function withShippingMethod(string $shippingMethod): self
     {
         $result = clone $this;
         $result->shippingMethod = $shippingMethod;
         return $result;
     }
 
-    public function getShippingCost()
+    public function getShippingCost(): string
     {
         return $this->shippingCost;
     }
 
-    public function withShippingCost($shippingCost): self
+    public function withShippingCost(string $shippingCost): self
     {
         $result = clone $this;
         $result->shippingCost = $shippingCost;
         return $result;
     }
 
-    public function getInsurance()
+    public function getInsurance(): string
     {
         return $this->insurance;
     }
 
-    public function withInsurance($insurance): self
+    public function withInsurance(string $insurance): self
     {
         $result = clone $this;
         $result->insurance = $insurance;
         return $result;
     }
 
-    public function getDiscount()
+    public function getDiscount(): string
     {
         return $this->discount;
     }
 
-    public function withDiscount($discount): self
+    public function withDiscount(string $discount): self
     {
         $result = clone $this;
         $result->discount = $discount;
         return $result;
     }
 
-    public function getVoucherCode()
+    public function getVoucherCode(): string
     {
         return $this->voucherCode;
     }
 
-    public function withVoucherCode($voucherCode): self
+    public function withVoucherCode(string $voucherCode): self
     {
         $result = clone $this;
         $result->voucherCode = $voucherCode;
         return $result;
     }
 
-    public function getOrderTotal()
+    public function getOrderTotal(): string
     {
         return $this->orderTotal;
     }
 
-    public function withOrderTotal($orderTotal): self
+    public function withOrderTotal(string $orderTotal): self
     {
         $result = clone $this;
         $result->orderTotal = $orderTotal;
         return $result;
     }
 
-    public function getPaymentComplete()
+    public function getPaymentComplete(): bool
     {
         return $this->paymentComplete;
     }
 
-    public function withPaymentComplete($paymentComplete): self
+    public function withPaymentComplete(bool $paymentComplete): self
     {
         $result = clone $this;
         $result->paymentComplete = $paymentComplete;
         return $result;
     }
 
-    public function getCurrencyCode()
+    public function getCurrencyCode(): string
     {
         return $this->currencyCode;
     }
 
-    public function withCurrencyCode($currencyCode): self
+    public function withCurrencyCode(string $currencyCode): self
     {
         $result = clone $this;
         $result->currencyCode = $currencyCode;
         return $result;
     }
 
-    public function getExchangeRate()
+    public function getExchangeRate(): string
     {
         return $this->exchangeRate;
     }
 
-    public function withExchangeRate($exchangeRate): self
+    public function withExchangeRate(string $exchangeRate): self
     {
         $result = clone $this;
         $result->exchangeRate = $exchangeRate;
         return $result;
     }
 
-    public function getSellerUsername()
+    public function getSellerUsername(): string
     {
         return $this->sellerUsername;
     }
 
-    public function withSellerUsername($sellerUsername): self
+    public function withSellerUsername(string $sellerUsername): self
     {
         $result = clone $this;
         $result->sellerUsername = $sellerUsername;
         return $result;
     }
 
-    public function getSellerId()
+    public function getSellerId(): int
     {
         return $this->sellerId;
     }
 
-    public function withSellerId($sellerId): self
+    public function withSellerId(int $sellerId): self
     {
         $result = clone $this;
         $result->sellerId = $sellerId;
         return $result;
     }
 
-    public function getCourierProfileName()
+    public function getCourierProfileName(): string
     {
         return $this->courierProfileName;
     }
 
-    public function withCourierProfileName($courierProfileName): self
+    public function withCourierProfileName(string $courierProfileName): self
     {
         $result = clone $this;
         $result->courierProfileName = $courierProfileName;
         return $result;
     }
 
-    public function getBuyerId()
+    public function getBuyerId(): string
     {
         return $this->buyerId;
     }
 
-    public function withBuyerId($buyerId): self
+    public function withBuyerId(string $buyerId): self
     {
         $result = clone $this;
         $result->buyerId = $buyerId;
         return $result;
     }
 
-    public function getStoreId()
+    public function getStoreId(): string
     {
         return $this->storeId;
     }
 
-    public function withStoreId($storeId): self
+    public function withStoreId(string $storeId): self
     {
         $result = clone $this;
         $result->storeId = $storeId;
         return $result;
     }
 
-    public function getShipToStore()
+    public function getShipToStore(): string
     {
         return $this->shipToStore;
     }
 
-    public function withShipToStore($shipToStore): self
+    public function withShipToStore(string $shipToStore): self
     {
         $result = clone $this;
         $result->shipToStore = $shipToStore;
         return $result;
     }
 
-    public function getOrderStatus()
+    public function getOrderStatus(): string
     {
         return $this->orderStatus;
     }
 
-    public function withOrderStatus($orderStatus): self
+    public function withOrderStatus(string $orderStatus): self
     {
         $result = clone $this;
         $result->orderStatus = $orderStatus;
         return $result;
     }
 
-    public function getFlag1()
+    public function getFlag1(): string
     {
         return $this->flag1;
     }
 
-    public function withFlag1($flag1): self
+    public function withFlag1(string $flag1): self
     {
         $result = clone $this;
         $result->flag1 = $flag1;
         return $result;
     }
 
-    public function getFlag2()
+    public function getFlag2(): string
     {
         return $this->flag2;
     }
 
-    public function withFlag2($flag2): self
+    public function withFlag2(string $flag2): self
     {
         $result = clone $this;
         $result->flag2 = $flag2;
         return $result;
     }
 
-    public function getCourierName()
+    public function getCourierName(): string
     {
         return $this->courierName;
     }
 
-    public function withCourierName($courierName): self
+    public function withCourierName(string $courierName): self
     {
         $result = clone $this;
         $result->courierName = $courierName;
         return $result;
     }
 
-    public function getCourierService()
+    public function getCourierService(): string
     {
         return $this->courierService;
     }
 
-    public function withCourierService($courierService): self
+    public function withCourierService(string $courierService): self
     {
         $result = clone $this;
         $result->courierService = $courierService;
         return $result;
     }
 
-    public function getCourierServiceCode()
+    public function getCourierServiceCode(): string
     {
         return $this->courierServiceCode;
     }
 
-    public function withCourierServiceCode($courierServiceCode): self
+    public function withCourierServiceCode(string $courierServiceCode): self
     {
         $result = clone $this;
         $result->courierServiceCode = $courierServiceCode;
         return $result;
     }
 
-    public function getFulfilmentType()
+    public function getFulfilmentType(): string
     {
         return $this->fulfilmentType;
     }
 
-    public function withFulfilmentType($fulfilmentType): self
+    public function withFulfilmentType(string $fulfilmentType): self
     {
         $result = clone $this;
         $result->fulfilmentType = $fulfilmentType;
         return $result;
     }
 
-    public function getWebOrderID()
+    public function getWebOrderID(): int
     {
         return $this->webOrderID;
     }
 
-    public function withWebOrderID($webOrderID): self
+    public function withWebOrderID(int $webOrderID): self
     {
         $result = clone $this;
         $result->webOrderID = $webOrderID;
         return $result;
     }
 
-    public function getShippingDate()
+    public function getShippingDate(): string
     {
         return $this->shippingDate;
     }
 
-    public function withShippingDate($shippingDate): self
+    public function withShippingDate(string $shippingDate): self
     {
         $result = clone $this;
         $result->shippingDate = $shippingDate;
         return $result;
     }
 
-    public function getInvoiceDate()
+    public function getInvoiceDate(): string
     {
         return $this->invoiceDate;
     }
 
-    public function withInvoiceDate($invoiceDate): self
+    public function withInvoiceDate(string $invoiceDate): self
     {
         $result = clone $this;
         $result->invoiceDate = $invoiceDate;
         return $result;
     }
 
-    public function getTradeSale()
+    public function getTradeSale(): bool
     {
         return $this->tradeSale;
     }
 
-    public function withTradeSale($tradeSale): self
+    public function withTradeSale(bool $tradeSale): self
     {
         $result = clone $this;
         $result->tradeSale = $tradeSale;
         return $result;
     }
 
-    public function getCourierTracking()
+    public function getCourierTracking(): string
     {
         return $this->courierTracking;
     }
 
-    public function withCourierTracking($courierTracking): self
+    public function withCourierTracking(string $courierTracking): self
     {
         $result = clone $this;
         $result->courierTracking = $courierTracking;
         return $result;
     }
 
-    public function getActualCourierCost()
+    public function getActualCourierCost(): string
     {
         return $this->actualCourierCost;
     }
 
-    public function withActualCourierCost($actualCourierCost): self
+    public function withActualCourierCost(string $actualCourierCost): self
     {
         $result = clone $this;
         $result->actualCourierCost = $actualCourierCost;
@@ -956,5 +950,4 @@ final class Order
         $result->payments = $payments;
         return $result;
     }
-
 }

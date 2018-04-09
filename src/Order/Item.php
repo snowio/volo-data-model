@@ -4,22 +4,16 @@ namespace SnowIO\VoloDataModel\Order;
 
 class Item
 {
-    public static function of(int $orderItemId): self
+    public static function of(int $orderItemId, string $stockNumber): self
     {
-        $item = new self($orderItemId);
+        $item = new self($orderItemId, $stockNumber);
         return $item;
-    }
-
-    public static function create(): self
-    {
-        return new self();
     }
 
     public static function fromJson($json): self
     {
-        return self::of($json['orderItemId'])
+        return self::of($json['orderItemId'], $json['stockNumber'])
             ->withWebProductID($json['webProductID'])
-            ->withStockNumber($json['stockNumber'])
             ->withItemNumber($json['itemNumber'])
             ->withProductTitle($json['productTitle'])
             ->withQuantity($json['quantity'])
@@ -101,9 +95,10 @@ class Item
     private $unitShippingAmount;
     private $backOrder;
 
-    private function __construct(int $orderItemId)
+    private function __construct(int $orderItemId, string $stockNumber)
     {
         $this->orderItemId = $orderItemId;
+        $this->stockNumber = $stockNumber;
     }
 
     public function getOrderItemId(): int
@@ -111,35 +106,21 @@ class Item
         return $this->orderItemId;
     }
 
-    public function withOrderItemId(int $orderItemId): self
-    {
-        $result = clone $this;
-        $result->orderItemId = $orderItemId;
-        return $result;
-    }
-
-    public function getWebProductID()
+    public function getWebProductID(): string
     {
         return $this->webProductID;
     }
 
-    public function withWebProductID($webProductID): self
+    public function withWebProductID(string $webProductID): self
     {
         $result = clone $this;
         $result->webProductID = $webProductID;
         return $result;
     }
 
-    public function getStockNumber()
+    public function getStockNumber(): string
     {
         return $this->stockNumber;
-    }
-
-    public function withStockNumber($stockNumber): self
-    {
-        $result = clone $this;
-        $result->stockNumber = $stockNumber;
-        return $result;
     }
 
     public function getItemNumber(): string
@@ -154,12 +135,12 @@ class Item
         return $result;
     }
 
-    public function getProductTitle()
+    public function getProductTitle(): string
     {
         return $this->productTitle;
     }
 
-    public function withProductTitle($productTitle): self
+    public function withProductTitle(string $productTitle): self
     {
         $result = clone $this;
         $result->productTitle = $productTitle;
@@ -202,24 +183,24 @@ class Item
         return $result;
     }
 
-    public function getTaxCode()
+    public function getTaxCode(): string
     {
         return $this->taxCode;
     }
 
-    public function withTaxCode($taxCode): self
+    public function withTaxCode(string $taxCode): self
     {
         $result = clone $this;
         $result->taxCode = $taxCode;
         return $result;
     }
 
-    public function getUnitCostIncludesTax()
+    public function getUnitCostIncludesTax(): string
     {
         return $this->unitCostIncludesTax;
     }
 
-    public function withUnitCostIncludesTax($unitCostIncludesTax): self
+    public function withUnitCostIncludesTax(string $unitCostIncludesTax): self
     {
         $result = clone $this;
         $result->unitCostIncludesTax = $unitCostIncludesTax;
@@ -238,60 +219,60 @@ class Item
         return $result;
     }
 
-    public function getProductFolderName()
+    public function getProductFolderName(): string
     {
         return $this->productFolderName;
     }
 
-    public function withProductFolderName($productFolderName): self
+    public function withProductFolderName(string $productFolderName): self
     {
         $result = clone $this;
         $result->productFolderName = $productFolderName;
         return $result;
     }
 
-    public function getCreditReason()
+    public function getCreditReason(): string
     {
         return $this->creditReason;
     }
 
-    public function withCreditReason($creditReason): self
+    public function withCreditReason(string $creditReason): self
     {
         $result = clone $this;
         $result->creditReason = $creditReason;
         return $result;
     }
 
-    public function getCustomMessage1()
+    public function getCustomMessage1(): string
     {
         return $this->customMessage1;
     }
 
-    public function withCustomMessage1($customMessage1): self
+    public function withCustomMessage1(string $customMessage1): self
     {
         $result = clone $this;
         $result->customMessage1 = $customMessage1;
         return $result;
     }
 
-    public function getCustomMessage2()
+    public function getCustomMessage2(): string
     {
         return $this->customMessage2;
     }
 
-    public function withCustomMessage2($customMessage2): self
+    public function withCustomMessage2(string $customMessage2): self
     {
         $result = clone $this;
         $result->customMessage2 = $customMessage2;
         return $result;
     }
 
-    public function getCustomMessage3()
+    public function getCustomMessage3(): string
     {
-        return $this->customMessageCustomMessage13;
+        return $this->customMessage3;
     }
 
-    public function withCustomMessage3($customMessage3): self
+    public function withCustomMessage3(string $customMessage3): self
     {
         $result = clone $this;
         $result->customMessage3 = $customMessage3;
@@ -322,36 +303,36 @@ class Item
         return $result;
     }
 
-    public function getKitType()
+    public function getKitType(): string
     {
         return $this->kitType;
     }
 
-    public function withKitType($kitType): self
+    public function withKitType(string $kitType): self
     {
         $result = clone $this;
         $result->kitType = $kitType;
         return $result;
     }
 
-    public function getKitMaster()
+    public function getKitMaster(): string
     {
         return $this->kitMaster;
     }
 
-    public function withKitMaster($kitMaster): self
+    public function withKitMaster(string $kitMaster): self
     {
         $result = clone $this;
         $result->kitMaster = $kitMaster;
         return $result;
     }
 
-    public function getPicked()
+    public function getPicked(): bool
     {
         return $this->picked;
     }
 
-    public function withPicked($picked): self
+    public function withPicked(bool $picked): self
     {
         $result = clone $this;
         $result->picked = $picked;
@@ -394,16 +375,15 @@ class Item
         return $result;
     }
 
-    public function getBackOrder()
+    public function getBackOrder(): bool
     {
         return $this->backOrder;
     }
 
-    public function withBackOrder($backOrder): self
+    public function withBackOrder(bool $backOrder): self
     {
         $result = clone $this;
         $result->backOrder = $backOrder;
         return $result;
     }
-
 }

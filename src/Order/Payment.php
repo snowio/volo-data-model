@@ -10,11 +10,6 @@ final class Payment
         return $payment;
     }
 
-    public static function create(): self
-    {
-        return new self();
-    }
-
     public static function fromJson(array $json)
     {
         return Payment::of($json['paymentReference'])
@@ -179,12 +174,12 @@ final class Payment
         return $result;
     }
 
-    public function getPaymentDate()
+    public function getPaymentDate(): string
     {
         return $this->paymentDate;
     }
 
-    public function withPaymentDate($paymentDate): self
+    public function withPaymentDate(string $paymentDate): self
     {
         $result = clone $this;
         $result->paymentDate = $paymentDate;
@@ -203,12 +198,12 @@ final class Payment
         return $result;
     }
 
-    public function getClearedDate()
+    public function getClearedDate(): string
     {
         return $this->clearedDate;
     }
 
-    public function withClearedDate($clearedDate): self
+    public function withClearedDate(string $clearedDate): self
     {
         $result = clone $this;
         $result->clearedDate = $clearedDate;

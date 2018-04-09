@@ -47,8 +47,8 @@ class OrderTest extends TestCase
             'deliveryTelephone' => 'deliveryTelephone',
             'shippingMethod' => 'shippingMethod',
             'shippingCost' => '199.99',
-            'insurance' => 0,
-            'discount' => 0,
+            'insurance' => '0',
+            'discount' => '0',
             'voucherCode' => 'voucherCode',
             'orderTotal' => '999.999',
             'paymentComplete' => true,
@@ -57,7 +57,7 @@ class OrderTest extends TestCase
             'sellerUsername' => 'sellerUsername',
             'sellerId' => 1,
             'courierProfileName' => 'courierProfileName',
-            'buyerId' => 9,
+            'buyerId' => "9",
             'storeId' => 'storeId',
             'shipToStore' => 'shipToStore',
             'orderStatus' => 'orderStatus',
@@ -151,7 +151,7 @@ class OrderTest extends TestCase
             ->withInvoiceNumber('invoiceNumber')
             ->withExternalReference('externalReference')
             ->withExternalReference('externalReference')
-            ->withBuyerId(11)
+            ->withBuyerId('11')
             ->withOrderTotal('99.9999')
             ->withDate('2018-04-05T08:42:03Z')
             ->withCustomerCompany('customerCompany')
@@ -180,8 +180,8 @@ class OrderTest extends TestCase
             ->withDeliveryTelephone('deliveryTelephone')
             ->withShippingMethod('shippingMethod')
             ->withShippingCost('199.99')
-            ->withInsurance(0)
-            ->withDiscount(0)
+            ->withInsurance('0')
+            ->withDiscount('0')
             ->withVoucherCode('voucherCode')
             ->withOrderTotal('999.999')
             ->withPaymentComplete(true)
@@ -190,7 +190,7 @@ class OrderTest extends TestCase
             ->withSellerUsername('sellerUsername')
             ->withSellerId(1)
             ->withCourierProfileName('courierProfileName')
-            ->withBuyerId(9)
+            ->withBuyerId('9')
             ->withStoreId('storeId')
             ->withShipToStore('shipToStore')
             ->withOrderStatus('orderStatus')
@@ -207,9 +207,8 @@ class OrderTest extends TestCase
             ->withCourierTracking('courierTracking')
             ->withActualCourierCost('99.333')
             ->withOrderItems(ItemSet::of([
-                Item::of(1)
+                Item::of(1, 'stockNumber')
                     ->withWebProductID('webProductID')
-                    ->withStockNumber('stockNumber')
                     ->withItemNumber('itemNumber')
                     ->withProductTitle('productTitle')
                     ->withQuantity(0)
@@ -234,15 +233,14 @@ class OrderTest extends TestCase
                     ->withBackOrder(true)
             ]))
             ->withOrderCredits(OrderCreditSet::of([
-                OrderCredit::of('0001')
+                OrderCredit::of('0001', 'stockNumber')
                     ->withCreditNoteDate('2018-04-05T08:42:03Z')
                     ->withShippingRefunded(0)
                     ->withInsuranceRefunded(0)
                     ->withDiscountRefunded(0)
                     ->withPrice('99.999999')
                     ->withCancelReason('cancelReason')
-                    ->withStockNumber('stockNumber')
-                    ->withQuantityRefunded('9.00')
+                    ->withQuantityRefunded(9)
             ]))
             ->withPayments(PaymentSet::of([
                 Payment::of('paymentReference')
