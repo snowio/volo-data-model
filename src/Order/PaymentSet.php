@@ -2,6 +2,8 @@
 
 namespace SnowIO\VoloDataModel\Order;
 
+use SnowIO\VoloDataModel\Internal\SetTrait;
+
 class PaymentSet
 {
     use SetTrait;

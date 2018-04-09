@@ -3,6 +3,8 @@
 
 namespace SnowIO\VoloDataModel\Order;
 
+use SnowIO\VoloDataModel\Internal\SetTrait;
+
 class OrderCreditSet
 {
     use SetTrait;
