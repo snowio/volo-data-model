@@ -47,10 +47,9 @@ class OrderUpdateTest extends TestCase
             "shippingMethod" => "string",
             "voucherCode" => "string",
             "tradeSale" => true,
-            "actualCourierCost" => 0
+            "actualCourierCost" => "0"
         ]);
-        $other = OrderUpdate::create()
-            ->withEspOrderNo(0)
+        $other = OrderUpdate::of(0)
             ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
             ->withOnHoldNotes("string")
             ->withCourier("string")
@@ -84,15 +83,14 @@ class OrderUpdateTest extends TestCase
             ->withShippingMethod("string")
             ->withVoucherCode("string")
             ->withTradeSale(true)
-            ->withActualCourierCost(0);
+            ->withActualCourierCost("0");
         self::assertEquals($other->toJson(), $orderUpdateData->toJson());
         self::assertTrue($other->equals($orderUpdateData));
     }
 
     public function testToJson()
     {
-        $orderData = OrderUpdate::create()
-            ->withEspOrderNo(0)
+        $orderData = OrderUpdate::of(0)
             ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
             ->withOnHoldNotes("string")
             ->withCourier("string")
@@ -126,7 +124,7 @@ class OrderUpdateTest extends TestCase
             ->withShippingMethod("string")
             ->withVoucherCode("string")
             ->withTradeSale(true)
-            ->withActualCourierCost(0);
+            ->withActualCourierCost("0");
         self::assertEquals([
             "espOrderNo" => 0,
             "orderStatus" => OrderStatus::WAITING_FOR_DELIVERY,
@@ -162,31 +160,27 @@ class OrderUpdateTest extends TestCase
             "shippingMethod" => "string",
             "voucherCode" => "string",
             "tradeSale" => true,
-            "actualCourierCost" => 0
+            "actualCourierCost" => "0"
         ], $orderData->toJson());
 
     }
 
     public function testEquals()
     {
-        $orderData = OrderUpdate::create()
-            ->withEspOrderNo(28393283)
+        $orderData = OrderUpdate::of(0)
             ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
             ->withOnHoldNotes("string")
             ->withCourier("string");
 
-        self::assertTrue($orderData->equals(OrderUpdate::create()
-            ->withEspOrderNo(28393283)
+        self::assertTrue($orderData->equals(OrderUpdate::of(0)
             ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
             ->withOnHoldNotes("string")
             ->withCourier("string")));
-        self::assertFalse($orderData->equals(OrderUpdate::create()
-            ->withEspOrderNo(28393283)
+        self::assertFalse($orderData->equals(OrderUpdate::of(0)
             ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
             ->withOnHoldNotes("string")
             ->withCourier("stering")));
-        self::assertFalse($orderData->equals(OrderUpdate::create()
-            ->withEspOrderNo(28393283)
+        self::assertFalse($orderData->equals(OrderUpdate::of(0)
             ->withOnHoldNotes("string")
             ->withCourier("stering")));
         self::assertFalse($orderData->equals(

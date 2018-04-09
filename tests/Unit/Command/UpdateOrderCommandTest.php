@@ -30,13 +30,11 @@ class UpdateOrderCommandTest extends TestCase
         ]);
 
         self::assertTrue(OrderUpdateCollection::of([
-            OrderUpdate::create()
-                ->withEspOrderNo(28393283)
+            OrderUpdate::of(28393283)
                 ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
                 ->withOnHoldNotes("string")
                 ->withCourier("string"),
-            OrderUpdate::create()
-                ->withEspOrderNo(76863823)
+            OrderUpdate::of(76863823)
                 ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
                 ->withOnHoldNotes("string")
                 ->withCourier("string"),
@@ -46,13 +44,11 @@ class UpdateOrderCommandTest extends TestCase
     public function testToJson()
     {
         $updateOrderCommand = UpdateOrderCommand::of(OrderUpdateCollection::of([
-            OrderUpdate::create()
-                ->withEspOrderNo(28393283)
+            OrderUpdate::of(28393283)
                 ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
                 ->withOnHoldNotes("string")
                 ->withCourier("string"),
-            OrderUpdate::create()
-                ->withEspOrderNo(76863823)
+            OrderUpdate::of(76863823)
                 ->withOrderStatus(OrderStatus::WAITING_FOR_DELIVERY)
                 ->withOnHoldNotes("string")
                 ->withCourier("string"),
