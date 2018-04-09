@@ -90,7 +90,6 @@ final class Order
         return self::of($json['espOrderNo'])
             ->withOrderType($json['orderType'])
             ->withOrderSource($json['orderSource'])
-            ->withEspOrderNo($json['espOrderNo'])
             ->withInvoiceNumber($json['invoiceNumber'])
             ->withExternalReference($json['externalReference'])
             ->withDate($json['date'])
@@ -246,13 +245,6 @@ final class Order
     public function getEspOrderNo(): int
     {
         return $this->espOrderNo;
-    }
-
-    public function withEspOrderNo(int $espOrderNo): self
-    {
-        $result = clone $this;
-        $result->espOrderNo = $espOrderNo;
-        return $result;
     }
 
     public function getInvoiceNumber(): string

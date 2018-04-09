@@ -260,4 +260,71 @@ class OrderTest extends TestCase
 
         self::assertEquals($this->getJsonData(22), $order->toJson());
     }
+
+    public function testGetters()
+    {
+        $data = $this->getJsonData(111111);
+        $order = Order::fromJson($data);
+
+        self::assertEquals($order->getEspOrderNo(), '111111');
+        self::assertEquals($order->getOrderType(), 'orderType');
+        self::assertEquals($order->getOrderSource(), 'orderSource');
+        self::assertEquals($order->getInvoiceNumber(), 'invoiceNumber');
+        self::assertEquals($order->getExternalReference(), 'externalReference');
+        self::assertEquals($order->getBuyerId(), '9');
+        self::assertEquals($order->getOrderTotal(), '999.999');
+        self::assertEquals($order->getDate(), '2018-04-05T08:42:03Z');
+        self::assertEquals($order->getCustomerCompany(), 'customerCompany');
+        self::assertEquals($order->getCustomerName(), 'customerName');
+        self::assertEquals($order->getCustomerAddress1(), 'customerAddress1');
+        self::assertEquals($order->getCustomerAddress2(), 'customerAddress2');
+        self::assertEquals($order->getCustomerAddress3(), 'customerAddress3');
+        self::assertEquals($order->getCustomerCity(), 'customerCity');
+        self::assertEquals($order->getCustomerCounty(), 'customerCounty');
+        self::assertEquals($order->getCustomerPostcode(), 'customerPostcode');
+        self::assertEquals($order->getCustomerCountry(), 'customerCountry');
+        self::assertEquals($order->getCustomerEmail(), 'customerEmail');
+        self::assertEquals($order->getCustomerTelephone(), 'customerTelephone');
+        self::assertEquals($order->getCustomerFax(), 'customerFax');
+        self::assertEquals($order->getCustomerReference(), 'customerReference');
+        self::assertEquals($order->getCustomerNotes(), 'customerNotes');
+        self::assertEquals($order->getDeliveryCompany(), 'deliveryCompany');
+        self::assertEquals($order->getDeliveryName(), 'deliveryName');
+        self::assertEquals($order->getDeliveryAddress1(), 'deliveryAddress1');
+        self::assertEquals($order->getDeliveryAddress2(), 'deliveryAddress2');
+        self::assertEquals($order->getDeliveryAddress3(), 'deliveryAddress3');
+        self::assertEquals($order->getDeliveryCity(), 'deliveryCity');
+        self::assertEquals($order->getDeliveryCounty(), 'deliveryCounty');
+        self::assertEquals($order->getDeliveryPostcode(), 'deliveryPostcode');
+        self::assertEquals($order->getDeliveryCountry(), 'deliveryCountry');
+        self::assertEquals($order->getDeliveryTelephone(), 'deliveryTelephone');
+        self::assertEquals($order->getShippingMethod(), 'shippingMethod');
+        self::assertEquals($order->getShippingCost(), '199.99');
+        self::assertEquals($order->getInsurance(), 0);
+        self::assertEquals($order->getDiscount(), 0);
+        self::assertEquals($order->getVoucherCode(), 'voucherCode');
+        self::assertEquals($order->getOrderTotal(), '999.999');
+        self::assertEquals($order->getPaymentComplete(), true);
+        self::assertEquals($order->getCurrencyCode(), 'currencyCode');
+        self::assertEquals($order->getExchangeRate(), '123.222');
+        self::assertEquals($order->getSellerUsername(), 'sellerUsername');
+        self::assertEquals($order->getSellerId(), 1);
+        self::assertEquals($order->getCourierProfileName(), 'courierProfileName');
+        self::assertEquals($order->getBuyerId(), '9');
+        self::assertEquals($order->getStoreId(), 'storeId');
+        self::assertEquals($order->getShipToStore(), 'shipToStore');
+        self::assertEquals($order->getOrderStatus(), 'orderStatus');
+        self::assertEquals($order->getFlag1(), 'flag1');
+        self::assertEquals($order->getFlag2(), 'flag2');
+        self::assertEquals($order->getCourierName(), 'courierName');
+        self::assertEquals($order->getCourierService(), 'courierService');
+        self::assertEquals($order->getCourierServiceCode(), 'courierServiceCode');
+        self::assertEquals($order->getFulfilmentType(), 'fulfilmentType');
+        self::assertEquals($order->getWebOrderID(), 1222);
+        self::assertEquals($order->getShippingDate(), '2018-04-05T08:42:03Z');
+        self::assertEquals($order->getInvoiceDate(), '2018-04-05T08:42:03Z');
+        self::assertEquals($order->getTradeSale(), true);
+        self::assertEquals($order->getCourierTracking(), 'courierTracking');
+        self::assertEquals($order->getActualCourierCost(), '99.333');
+    }
 }
