@@ -42,4 +42,11 @@ class PaymentSet
             return $payment->toJson();
         }, array_values($this->items));
     }
+
+    private static function itemsAreEqual(
+        Payment $payment,
+        Payment $otherPayment
+    ) : bool {
+        return $payment->equals($otherPayment);
+    }
 }

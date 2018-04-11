@@ -47,6 +47,28 @@ final class Payment
         ];
     }
 
+    /**
+     * @param Payment $object
+     * @return bool
+     */
+    public function equals($object): bool
+    {
+        return ($object instanceof Payment) &&
+        ($this->paymentMethod === $object->paymentMethod) &&
+        ($this->paymentReference === $object->paymentReference) &&
+        ($this->paymentNotes === $object->paymentNotes) &&
+        ($this->paymentCCDetails === $object->paymentCCDetails) &&
+        ($this->paymentGateway === $object->paymentGateway) &&
+        ($this->payPalEmail === $object->payPalEmail) &&
+        ($this->payPalTransactionID === $object->payPalTransactionID) &&
+        ($this->payPalProtectionEligibility === $object->payPalProtectionEligibility) &&
+        ($this->amount === $object->amount) &&
+        ($this->paymentDate === $object->paymentDate) &&
+        ($this->paymentId === $object->paymentId) &&
+        ($this->clearedDate === $object->clearedDate) &&
+        ($this->postedBatchId === $object->postedBatchId);
+    }
+
     private $paymentMethod;
     private $paymentReference;
     private $paymentNotes;
