@@ -24,15 +24,22 @@ class OrderCreditSet
         return $result;
     }
 
-    private static function getKey(OrderCredit $orderCredit): string
-    {
-        return $orderCredit->getCreditNoteNumber();
-    }
-
     public function toJson(): array
     {
         return array_map(function (OrderCredit $orderCredit) {
             return $orderCredit->toJson();
         }, array_values($this->items));
+    }
+
+    private static function getKey(OrderCredit $orderCredit): string
+    {
+        return $orderCredit->getCreditNoteNumber();
+    }
+
+    private static function itemsAreEqual(
+        OrderCredit $orderCredit,
+        OrderCredit $otherOrderCredit
+    ) : bool {
+        return $orderCredit->equals($otherOrderCredit);
     }
 }

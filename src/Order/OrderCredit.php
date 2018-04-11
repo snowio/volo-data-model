@@ -37,6 +37,20 @@ class OrderCredit
         ];
     }
 
+    public function equals($object): bool
+    {
+        return ($object instanceof OrderCredit) &&
+        ($this->creditNoteNumber === $object->creditNoteNumber) &&
+        ($this->creditNoteDate === $object->creditNoteDate) &&
+        ($this->shippingRefunded === $object->shippingRefunded) &&
+        ($this->insuranceRefunded === $object->insuranceRefunded) &&
+        ($this->discountRefunded === $object->discountRefunded) &&
+        ($this->price === $object->price) &&
+        ($this->cancelReason === $object->cancelReason) &&
+        ($this->stockNumber === $object->stockNumber) &&
+        ($this->quantityRefunded === $object->quantityRefunded);
+    }
+
     private $creditNoteNumber;
     private $creditNoteDate;
     private $shippingRefunded;
