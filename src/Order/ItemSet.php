@@ -34,4 +34,11 @@ final class ItemSet implements \IteratorAggregate
             return $item->toJson();
         }, array_values($this->items));
     }
+
+    private static function itemsAreEqual(
+        Item $item,
+        Item $otherItem
+    ) : bool {
+        return $item->equals($otherItem);
+    }
 }

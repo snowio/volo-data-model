@@ -69,6 +69,40 @@ class Item
         ];
     }
 
+    /**
+     * @param Item $object
+     * @return bool
+     */
+    public function equals($object): bool
+    {
+        return ($object instanceof Item) &&
+        ($this->orderItemId === $object->orderItemId) &&
+        ($this->webProductID === $object->webProductID) &&
+        ($this->stockNumber === $object->stockNumber) &&
+        ($this->itemNumber === $object->itemNumber) &&
+        ($this->productTitle === $object->productTitle) &&
+        ($this->quantity === $object->quantity) &&
+        ($this->unitCost === $object->unitCost) &&
+        ($this->taxRate === $object->taxRate) &&
+        ($this->taxCode === $object->taxCode) &&
+        ($this->unitCostIncludesTax === $object->unitCostIncludesTax) &&
+        ($this->weight === $object->weight) &&
+        ($this->productFolderName === $object->productFolderName) &&
+        ($this->creditReason === $object->creditReason) &&
+        ($this->customMessage1 === $object->customMessage1) &&
+        ($this->customMessage2 === $object->customMessage2) &&
+        ($this->customMessage3 === $object->customMessage3) &&
+        ($this->locationId === $object->locationId) &&
+        ($this->supplierId === $object->supplierId) &&
+        ($this->kitType === $object->kitType) &&
+        ($this->kitMaster === $object->kitMaster) &&
+        ($this->picked === $object->picked) &&
+        ($this->unitItemTax === $object->unitItemTax) &&
+        ($this->unitShippingTax === $object->unitShippingTax) &&
+        ($this->unitShippingAmount === $object->unitShippingAmount) &&
+        ($this->backOrder === $object->backOrder);
+    }
+
     private $orderItemId;
     private $webProductID;
     private $stockNumber;
