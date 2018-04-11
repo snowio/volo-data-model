@@ -109,7 +109,8 @@ class PaymentSetTest extends TestCase
         self::assertFalse($itemSet->equals($notSameSet));
     }
 
-    private function getSampleData($paymentReference){
+    private function getSampleData($paymentReference)
+    {
         return [
             'paymentMethod' => 'paymentMethod',
             'paymentReference' => $paymentReference,

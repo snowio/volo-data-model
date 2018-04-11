@@ -13,7 +13,8 @@ use SnowIO\VoloDataModel\Order\Order;
 
 class OrderTest extends TestCase
 {
-    private function getJsonData($espOrderNo){
+    private function getJsonData($espOrderNo)
+    {
         return [
             'orderType' => 'orderType',
             'orderSource' => 'orderSource',

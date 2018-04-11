@@ -9,7 +9,7 @@ use SnowIO\VoloDataModel\Order\ItemSet;
 
 class ItemSetTest extends TestCase
 {
-    public function ItemSetToJson()
+    public function testItemSetToJson()
     {
         $itemSet = ItemSet::of([
             Item::of(1, 'stockNumber')
@@ -43,7 +43,7 @@ class ItemSetTest extends TestCase
         ], $itemSet->toJson());
     }
 
-    public function ItemSetFromJson()
+    public function testItemSetFromJson()
     {
         $data = [
             $this->getSampleData(),
@@ -132,7 +132,8 @@ class ItemSetTest extends TestCase
         self::assertFalse($itemSet->equals($notSameSet));
     }
 
-    private function getSampleData(){
+    private function getSampleData()
+    {
         return [
             'orderItemId' => 1,
             'webProductID'=> 'webProductID',
