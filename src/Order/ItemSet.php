@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types = 1);
 namespace SnowIO\VoloDataModel\Order;
 
 use SnowIO\VoloDataModel\Internal\SetTrait;
@@ -8,9 +8,9 @@ final class ItemSet implements \IteratorAggregate
 {
     use SetTrait;
 
-    public function get($espOrderNo): ?Item
+    public function get($orderItemId): ?Item
     {
-        return $this->items[$espOrderNo] ?? null;
+        return $this->items[$orderItemId] ?? null;
     }
 
     public static function fromJson(array $json): self
@@ -18,7 +18,8 @@ final class ItemSet implements \IteratorAggregate
         $result = self::create();
 
         foreach ($json as $item) {
-            $result->items[] = Item::fromJson($item);
+            $item = Item::fromJson($item);
+            $result->items[$item->getOrderItemId()] = $item;
         }
         return $result;
     }
