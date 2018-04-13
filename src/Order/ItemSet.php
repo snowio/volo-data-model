@@ -15,18 +15,14 @@ final class ItemSet implements \IteratorAggregate
 
     public static function fromJson(array $json): self
     {
-        $result = self::create();
-
-        foreach ($json as $item) {
-            $item = Item::fromJson($item);
-            $result->items[$item->getOrderItemId()] = $item;
-        }
-        return $result;
+        return self::of(array_map(function ($item) {
+            return Item::fromJson($item);
+        }, $json));
     }
 
     private static function getKey(Item $orderItem): string
     {
-        return $orderItem->getOrderItemId();
+        return (string) $orderItem->getOrderItemId();
     }
 
     public function toJson(): array
@@ -36,10 +32,8 @@ final class ItemSet implements \IteratorAggregate
         }, array_values($this->items));
     }
 
-    private static function itemsAreEqual(
-        Item $item,
-        Item $otherItem
-    ) : bool {
+    private static function itemsAreEqual(Item $item, Item $otherItem) : bool
+    {
         return $item->equals($otherItem);
     }
 }

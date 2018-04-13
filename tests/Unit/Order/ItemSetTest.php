@@ -39,15 +39,39 @@ class ItemSetTest extends TestCase
         ]);
 
         self::assertEquals([
-            $this->getSampleData()
+            $this->getSampleData(1)
         ], $itemSet->toJson());
+    }
+
+    /**
+     * @expectedException \SnowIO\VoloDataModel\VoloDataException
+     * @expectedMessage Cannot set OrderCredit with same stockNumber
+     */
+    public function testInvalidSetItemSetTwiceInOf()
+    {
+        ItemSet::of([
+            Item::of(1, 'stockNumber1'),
+            Item::of(1, 'stockNumber2')
+        ]);
+    }
+
+    /**
+     * @expectedException \SnowIO\VoloDataModel\VoloDataException
+     * @expectedMessage Cannot set OrderCredit with same stockNumber
+     */
+    public function testInvalidItemSetTwiceInFromJson()
+    {
+        ItemSet::fromJson([
+            Item::of(1, 'stockNumber1')->toJson(),
+            Item::of(1, 'stockNumber2')->toJson()
+        ]);
     }
 
     public function testItemSetFromJson()
     {
         $data = [
-            $this->getSampleData(),
-            $this->getSampleData()
+            $this->getSampleData(1),
+            $this->getSampleData(2)
         ];
         $itemSet = ItemSet::fromJson($data);
 
@@ -132,10 +156,10 @@ class ItemSetTest extends TestCase
         self::assertFalse($itemSet->equals($notSameSet));
     }
 
-    private function getSampleData()
+    private function getSampleData($orderItemId)
     {
         return [
-            'orderItemId' => 1,
+            'orderItemId' => $orderItemId,
             'webProductID'=> 'webProductID',
             'stockNumber'=> 'stockNumber',
             'itemNumber'=> 'itemNumber',
