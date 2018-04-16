@@ -39,7 +39,9 @@ class ItemSetTest extends TestCase
         ]);
 
         self::assertEquals([
-            $this->getSampleData(1)
+            "item" => [
+                $this->getSampleData(1)
+            ]
         ], $itemSet->toJson());
     }
 
@@ -62,16 +64,20 @@ class ItemSetTest extends TestCase
     public function testInvalidItemSetTwiceInFromJson()
     {
         ItemSet::fromJson([
-            Item::of(1, 'stockNumber1')->toJson(),
-            Item::of(1, 'stockNumber2')->toJson()
+            "item" => [
+                Item::of(1, 'stockNumber1')->toJson(),
+                Item::of(1, 'stockNumber2')->toJson(),
+            ]
         ]);
     }
 
     public function testItemSetFromJson()
     {
         $data = [
-            $this->getSampleData(1),
-            $this->getSampleData(2)
+            "item" => [
+                $this->getSampleData(1),
+                $this->getSampleData(2)
+            ],
         ];
         $itemSet = ItemSet::fromJson($data);
 
@@ -85,33 +91,37 @@ class ItemSetTest extends TestCase
             Item::of(1, 'stockNumber')
         ]);
 
-        self::assertEquals([[
-            'orderItemId' => 1,
-            'webProductID'=> null,
-            'stockNumber'=> 'stockNumber',
-            'itemNumber'=> null,
-            'productTitle'=> null,
-            'quantity'=> 0,
-            'unitCost'=> '',
-            'taxRate'=> '',
-            'taxCode'=> null,
-            'unitCostIncludesTax'=> null,
-            'weight'=> 0,
-            'productFolderName'=> null,
-            'creditReason'=> null,
-            'customMessage1'=> null,
-            'customMessage2'=> null,
-            'customMessage3'=> null,
-            'locationId'=> 0,
-            'supplierId'=> 0,
-            'kitType'=> null,
-            'kitMaster'=> null,
-            'picked'=> null,
-            'unitItemTax'=> '',
-            'unitShippingTax'=> '',
-            'unitShippingAmount'=> '',
-            'backOrder'=> null
-        ]], $itemSet->toJson());
+        self::assertEquals([
+            "item" => [
+                [
+                    'orderItemId' => 1,
+                    'webProductID' => null,
+                    'stockNumber' => 'stockNumber',
+                    'itemNumber' => null,
+                    'productTitle' => null,
+                    'quantity' => 0,
+                    'unitCost' => '',
+                    'taxRate' => '',
+                    'taxCode' => null,
+                    'unitCostIncludesTax' => null,
+                    'weight' => 0,
+                    'productFolderName' => null,
+                    'creditReason' => null,
+                    'customMessage1' => null,
+                    'customMessage2' => null,
+                    'customMessage3' => null,
+                    'locationId' => 0,
+                    'supplierId' => 0,
+                    'kitType' => null,
+                    'kitMaster' => null,
+                    'picked' => null,
+                    'unitItemTax' => '',
+                    'unitShippingTax' => '',
+                    'unitShippingAmount' => '',
+                    'backOrder' => null
+                ]
+            ]
+        ], $itemSet->toJson());
     }
 
     /**
@@ -160,30 +170,30 @@ class ItemSetTest extends TestCase
     {
         return [
             'orderItemId' => $orderItemId,
-            'webProductID'=> 'webProductID',
-            'stockNumber'=> 'stockNumber',
-            'itemNumber'=> 'itemNumber',
-            'productTitle'=> 'productTitle',
-            'quantity'=> 0,
-            'unitCost'=> '99.00',
-            'taxRate'=> '98.002',
-            'taxCode'=> 'taxCode',
-            'unitCostIncludesTax'=> 'unitCostIncludesTax',
-            'weight'=> 0,
-            'productFolderName'=> 'productFolderName',
-            'creditReason'=> 'creditReason',
-            'customMessage1'=> 'customMessage1',
-            'customMessage2'=> 'customMessage2',
-            'customMessage3'=> 'customMessage3',
-            'locationId'=> 0,
-            'supplierId'=> 1,
-            'kitType'=> 'kitType',
-            'kitMaster'=> 'kitMaster',
-            'picked'=> true,
-            'unitItemTax'=> '22.112',
-            'unitShippingTax'=> '33.333',
-            'unitShippingAmount'=> '44.444',
-            'backOrder'=> true
+            'webProductID' => 'webProductID',
+            'stockNumber' => 'stockNumber',
+            'itemNumber' => 'itemNumber',
+            'productTitle' => 'productTitle',
+            'quantity' => 0,
+            'unitCost' => '99.00',
+            'taxRate' => '98.002',
+            'taxCode' => 'taxCode',
+            'unitCostIncludesTax' => 'unitCostIncludesTax',
+            'weight' => 0,
+            'productFolderName' => 'productFolderName',
+            'creditReason' => 'creditReason',
+            'customMessage1' => 'customMessage1',
+            'customMessage2' => 'customMessage2',
+            'customMessage3' => 'customMessage3',
+            'locationId' => 0,
+            'supplierId' => 1,
+            'kitType' => 'kitType',
+            'kitMaster' => 'kitMaster',
+            'picked' => true,
+            'unitItemTax' => '22.112',
+            'unitShippingTax' => '33.333',
+            'unitShippingAmount' => '44.444',
+            'backOrder' => true
         ];
     }
 }

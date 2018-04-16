@@ -17,19 +17,21 @@ final class ItemSet implements \IteratorAggregate
     {
         return self::of(array_map(function ($item) {
             return Item::fromJson($item);
-        }, $json));
+        }, $json['item']));
     }
 
     private static function getKey(Item $orderItem): string
     {
-        return (string) $orderItem->getOrderItemId();
+        return (string)$orderItem->getOrderItemId();
     }
 
     public function toJson(): array
     {
-        return array_map(function (Item $item) {
-            return $item->toJson();
-        }, array_values($this->items));
+        return [
+            "item" => \array_map(function (Item $item) {
+                return $item->toJson();
+            }, array_values($this->items))
+        ];
     }
 
     private static function itemsAreEqual(Item $item, Item $otherItem) : bool
