@@ -219,7 +219,7 @@ class OrderTest extends TestCase
                     ->withTaxRate('98.002')
                     ->withTaxCode('taxCode')
                     ->withUnitCostIncludesTax('unitCostIncludesTax')
-                    ->withWeight(0)
+                    ->withWeight("0")
                     ->withProductFolderName('productFolderName')
                     ->withCreditReason('creditReason')
                     ->withCustomMessage1('customMessage1')

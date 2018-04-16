@@ -6,7 +6,8 @@ final class Item
 {
     public static function of(int $orderItemId, string $stockNumber): self
     {
-        $item = new self($orderItemId, $stockNumber);
+        $item = (new self($orderItemId, $stockNumber))
+            ->withWeight("0");
         return $item;
     }
 
@@ -16,25 +17,25 @@ final class Item
         $result->webProductID = $json['webProductID'] ?? null;
         $result->itemNumber = $json['itemNumber'] ?? null;
         $result->productTitle = $json['productTitle'] ?? null;
-        $result->quantity = $json['quantity'] ?? null;
-        $result->unitCost = $json['unitCost'] ?? null;
-        $result->taxRate = $json['taxRate'] ?? null;
+        $result->quantity = (int) $json['quantity'] ?? null;
+        $result->unitCost = (string) $json['unitCost'] ?? null;
+        $result->taxRate = (string) $json['taxRate'] ?? null;
         $result->taxCode = $json['taxCode'] ?? null;
         $result->unitCostIncludesTax = $json['unitCostIncludesTax'] ?? null;
-        $result->weight = $json['weight'] ?? null;
+        $result->weight = (string) $json['weight'] ?? null;
         $result->productFolderName = $json['productFolderName'] ?? null;
         $result->creditReason = $json['creditReason'] ?? null;
         $result->customMessage1 = $json['customMessage1'] ?? null;
         $result->customMessage2 = $json['customMessage2'] ?? null;
         $result->customMessage3 = $json['customMessage3'] ?? null;
-        $result->locationId = $json['locationId'] ?? null;
-        $result->supplierId = $json['supplierId'] ?? null;
+        $result->locationId = (int) $json['locationId'] ?? null;
+        $result->supplierId = (int) $json['supplierId'] ?? null;
         $result->kitType = $json['kitType'] ?? null;
         $result->kitMaster = $json['kitMaster'] ?? null;
         $result->picked = $json['picked'] ?? null;
-        $result->unitItemTax = $json['unitItemTax'] ?? null;
-        $result->unitShippingTax = $json['unitShippingTax'] ?? null;
-        $result->unitShippingAmount = $json['unitShippingAmount'] ?? null;
+        $result->unitItemTax = (string) $json['unitItemTax'] ?? null;
+        $result->unitShippingTax = (string) $json['unitShippingTax'] ?? null;
+        $result->unitShippingAmount = (string) $json['unitShippingAmount'] ?? null;
         $result->backOrder = $json['backOrder'] ?? null;
         return $result;
     }
@@ -145,12 +146,12 @@ final class Item
         return $result;
     }
 
-    public function getWeight(): ?int
+    public function getWeight(): ?string
     {
         return $this->weight;
     }
 
-    public function withWeight(int $weight): self
+    public function withWeight(string $weight): self
     {
         $result = clone $this;
         $result->weight = $weight;
@@ -338,7 +339,7 @@ final class Item
             'taxRate' => (string)$this->taxRate,
             'taxCode' => $this->taxCode,
             'unitCostIncludesTax' => $this->unitCostIncludesTax,
-            'weight' => (int)$this->weight,
+            'weight' => (string) $this->weight,
             'productFolderName' => $this->productFolderName,
             'creditReason' => $this->creditReason,
             'customMessage1' => $this->customMessage1,
