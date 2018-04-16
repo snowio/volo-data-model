@@ -4,7 +4,7 @@ namespace SnowIO\VoloDataModel\Order;
 
 final class Order
 {
-    public static function of(int $espOrderNo): self
+    public static function of(string $espOrderNo): self
     {
         $order = new self($espOrderNo);
         $order->orderItems = ItemSet::create();
@@ -103,7 +103,7 @@ final class Order
         return $result;
     }
 
-    public function getEspOrderNo(): int
+    public function getEspOrderNo(): string
     {
         return $this->espOrderNo;
     }
@@ -937,7 +937,7 @@ final class Order
     /** @var  PaymentSet */
     private $payments;
 
-    private function __construct(int $espOrderNo)
+    private function __construct(string $espOrderNo)
     {
         $this->espOrderNo = $espOrderNo;
     }

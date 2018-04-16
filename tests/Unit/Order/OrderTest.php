@@ -140,7 +140,7 @@ class OrderTest extends TestCase
 
     public function testFromJsonToJson()
     {
-        $data = $this->getJsonData(111111);
+        $data = $this->getJsonData('111111');
         $order = Order::fromJson($data);
 
         self::assertEquals($data, $order->toJson());
@@ -148,7 +148,7 @@ class OrderTest extends TestCase
 
     public function testWithers()
     {
-        $order = Order::of(22)
+        $order = Order::of('22')
             ->withOrderType('orderType')
             ->withOrderSource('orderSource')
             ->withInvoiceNumber('invoiceNumber')
@@ -261,12 +261,12 @@ class OrderTest extends TestCase
                     ->withPostedBatchId(1)
             ]));
 
-        self::assertEquals($this->getJsonData(22), $order->toJson());
+        self::assertEquals($this->getJsonData('22'), $order->toJson());
     }
 
     public function testGetters()
     {
-        $data = $this->getJsonData(111111);
+        $data = $this->getJsonData('111111');
         $order = Order::fromJson($data);
 
         self::assertEquals($order->getEspOrderNo(), '111111');
