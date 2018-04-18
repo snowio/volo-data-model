@@ -28,15 +28,19 @@ class PaymentSetTest extends TestCase
         ]);
 
         self::assertEquals([
-            $this->getSampleData('paymentReference')
+            'payment' => [
+                $this->getSampleData('paymentReference'),
+            ]
         ], $itemSet->toJson());
     }
 
     public function testPaymentSetFromJson()
     {
         $data = [
-            $this->getSampleData('1'),
-            $this->getSampleData('2')
+            'payment' => [
+                $this->getSampleData('1'),
+                $this->getSampleData('2')
+            ]
         ];
         $itemSet = PaymentSet::fromJson($data);
 
@@ -50,21 +54,25 @@ class PaymentSetTest extends TestCase
             Payment::of('1')
         ]);
 
-        self::assertEquals([[
-            'paymentMethod' => null,
-            'paymentReference' => '1',
-            'paymentNotes' => null,
-            'paymentCCDetails' => null,
-            'paymentGateway' => null,
-            'payPalEmail' => null,
-            'payPalTransactionID' => null,
-            'payPalProtectionEligibility' => null,
-            'amount' => null,
-            'paymentDate' => null,
-            'paymentId' => 0,
-            'clearedDate' => null,
-            'postedBatchId' => 0,
-        ]], $itemSet->toJson());
+        self::assertEquals([
+            'payment' => [
+                [
+                    'paymentMethod' => null,
+                    'paymentReference' => '1',
+                    'paymentNotes' => null,
+                    'paymentCCDetails' => null,
+                    'paymentGateway' => null,
+                    'payPalEmail' => null,
+                    'payPalTransactionID' => null,
+                    'payPalProtectionEligibility' => null,
+                    'amount' => null,
+                    'paymentDate' => null,
+                    'paymentId' => 0,
+                    'clearedDate' => null,
+                    'postedBatchId' => 0,
+                ],
+            ]
+        ], $itemSet->toJson());
     }
 
     /**
@@ -112,19 +120,20 @@ class PaymentSetTest extends TestCase
     private function getSampleData($paymentReference)
     {
         return [
-            'paymentMethod' => 'paymentMethod',
-            'paymentReference' => $paymentReference,
-            'paymentNotes' => 'paymentNotes',
-            'paymentCCDetails' => 'paymentCCDetails',
-            'paymentGateway' => 'paymentGateway',
-            'payPalEmail' => 'payPalEmail',
-            'payPalTransactionID' => 'payPalTransactionID',
-            'payPalProtectionEligibility' => true,
-            'amount' => '99.999',
-            'paymentDate' => 'paymentDate',
-            'paymentId' => 12,
-            'clearedDate' => 'clearedDate',
-            'postedBatchId' => 1,
+                    'paymentMethod' => 'paymentMethod',
+                    'paymentReference' => $paymentReference,
+                    'paymentNotes' => 'paymentNotes',
+                    'paymentCCDetails' => 'paymentCCDetails',
+                    'paymentGateway' => 'paymentGateway',
+                    'payPalEmail' => 'payPalEmail',
+                    'payPalTransactionID' => 'payPalTransactionID',
+                    'payPalProtectionEligibility' => true,
+                    'amount' => '99.999',
+                    'paymentDate' => 'paymentDate',
+                    'paymentId' => 12,
+                    'clearedDate' => 'clearedDate',
+                    'postedBatchId' => 1,
+
         ];
     }
 }

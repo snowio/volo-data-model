@@ -119,20 +119,22 @@ class OrderTest extends TestCase
                 ]
             ],
             'payments' => [
-                [
-                    'paymentMethod' => 'paymentMethod',
-                    'paymentReference' => 'paymentReference',
-                    'paymentNotes' => 'paymentNotes',
-                    'paymentCCDetails' => 'paymentCCDetails',
-                    'paymentGateway' => 'paymentGateway',
-                    'payPalEmail' => 'payPalEmail',
-                    'payPalTransactionID' => 'payPalTransactionID',
-                    'payPalProtectionEligibility' => true,
-                    'amount' => '99.999',
-                    'paymentDate' => 'paymentDate',
-                    'paymentId' => 12,
-                    'clearedDate' => 'clearedDate',
-                    'postedBatchId' => 1,
+                'payment' => [
+                    [
+                        'paymentMethod' => 'paymentMethod',
+                        'paymentReference' => 'paymentReference',
+                        'paymentNotes' => 'paymentNotes',
+                        'paymentCCDetails' => 'paymentCCDetails',
+                        'paymentGateway' => 'paymentGateway',
+                        'payPalEmail' => 'payPalEmail',
+                        'payPalTransactionID' => 'payPalTransactionID',
+                        'payPalProtectionEligibility' => true,
+                        'amount' => '99.999',
+                        'paymentDate' => 'paymentDate',
+                        'paymentId' => 12,
+                        'clearedDate' => 'clearedDate',
+                        'postedBatchId' => 1,
+                    ]
                 ]
             ],
         ];

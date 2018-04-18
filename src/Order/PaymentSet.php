@@ -15,12 +15,9 @@ class PaymentSet
 
     public static function fromJson(array $json): PaymentSet
     {
-        $result = self::create();
-
-        foreach ($json as $paymentItem) {
-            $result->items[] = Payment::fromJson($paymentItem);
-        }
-        return $result;
+        return self::of(array_map(function (array $paymentJson) {
+            return Payment::fromJson($paymentJson);
+        }, $json["payment"]));
     }
 
     public function withPayment(Payment $payment): self
@@ -38,9 +35,11 @@ class PaymentSet
 
     public function toJson(): array
     {
-        return array_map(function (Payment $payment) {
-            return $payment->toJson();
-        }, array_values($this->items));
+        return [
+            "payment" => array_map(function (Payment $payment) {
+                return $payment->toJson();
+            }, array_values($this->items))
+        ];
     }
 
     private static function itemsAreEqual(
