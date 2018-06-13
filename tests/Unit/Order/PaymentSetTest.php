@@ -9,6 +9,12 @@ use SnowIO\VoloDataModel\Order\PaymentSet;
 
 class PaymentSetTest extends TestCase
 {
+    public function testEmptyJsonPaymentSet()
+    {
+        $itemSet = PaymentSet::fromJson([]);
+        self::assertEquals([], $itemSet->toJson());
+    }
+
     public function testPaymentSetToJson()
     {
         $itemSet = PaymentSet::of([

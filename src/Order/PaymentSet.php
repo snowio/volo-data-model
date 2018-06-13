@@ -17,7 +17,7 @@ class PaymentSet
     {
         return self::of(array_map(function (array $paymentJson) {
             return Payment::fromJson($paymentJson);
-        }, $json["payment"]));
+        }, $json["payment"] ?? []));
     }
 
     public function withPayment(Payment $payment): self
@@ -35,6 +35,10 @@ class PaymentSet
 
     public function toJson(): array
     {
+        if (empty($this->items)) {
+            return [];
+        }
+
         return [
             "payment" => array_map(function (Payment $payment) {
                 return $payment->toJson();
