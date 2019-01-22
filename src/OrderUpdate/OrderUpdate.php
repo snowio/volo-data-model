@@ -54,7 +54,7 @@ final class OrderUpdate
         return $result;
     }
 
-    public function withOrderStatus(string $orderStatus): self
+    public function withOrderStatus(?string $orderStatus): self
     {
         OrderStatus::validateStatus($orderStatus);
         $result = clone $this;
@@ -62,7 +62,7 @@ final class OrderUpdate
         return $result;
     }
 
-    public function withOnHoldNotes(string $onHoldNotes): self
+    public function withOnHoldNotes(?string $onHoldNotes): self
     {
         $result = clone $this;
         $result->onHoldNotes = $onHoldNotes;
@@ -76,217 +76,217 @@ final class OrderUpdate
         return $result;
     }
 
-    public function withCourierService(string $courierService): self
+    public function withCourierService(?string $courierService): self
     {
         $result = clone $this;
         $result->courierService = $courierService;
         return $result;
     }
 
-    public function withCourierTracking(string $courierTracking): self
+    public function withCourierTracking(?string $courierTracking): self
     {
         $result = clone $this;
         $result->courierTracking = $courierTracking;
         return $result;
     }
 
-    public function withFlag1(string $flag1): self
+    public function withFlag1(?string $flag1): self
     {
         $result = clone $this;
         $result->flag1 = $flag1;
         return $result;
     }
 
-    public function withFlag2(string $flag2): self
+    public function withFlag2(?string $flag2): self
     {
         $result = clone $this;
         $result->flag2 = $flag2;
         return $result;
     }
 
-    public function withCustomerCompany(string $customerCompany): self
+    public function withCustomerCompany(?string $customerCompany): self
     {
         $result = clone $this;
         $result->customerCompany = $customerCompany;
         return $result;
     }
 
-    public function withCustomerName(string $customerName): self
+    public function withCustomerName(?string $customerName): self
     {
         $result = clone $this;
         $result->customerName = $customerName;
         return $result;
     }
 
-    public function withCustomerAddress1(string $customerAddress1): self
+    public function withCustomerAddress1(?string $customerAddress1): self
     {
         $result = clone $this;
         $result->customerAddress1 = $customerAddress1;
         return $result;
     }
 
-    public function withCustomerAddress2(string $customerAddress2): self
+    public function withCustomerAddress2(?string $customerAddress2): self
     {
         $result = clone $this;
         $result->customerAddress2 = $customerAddress2;
         return $result;
     }
 
-    public function withCustomerAddress3(string $customerAddress3): self
+    public function withCustomerAddress3(?string $customerAddress3): self
     {
         $result = clone $this;
         $result->customerAddress3 = $customerAddress3;
         return $result;
     }
 
-    public function withCustomerCity(string $customerCity): self
+    public function withCustomerCity(?string $customerCity): self
     {
         $result = clone $this;
         $result->customerCity = $customerCity;
         return $result;
     }
 
-    public function withCustomerCounty(string $customerCounty): self
+    public function withCustomerCounty(?string $customerCounty): self
     {
         $result = clone $this;
         $result->customerCounty = $customerCounty;
         return $result;
     }
 
-    public function withCustomerPostcode(string $customerPostcode): self
+    public function withCustomerPostcode(?string $customerPostcode): self
     {
         $result = clone $this;
         $result->customerPostcode = $customerPostcode;
         return $result;
     }
 
-    public function withCustomerCountry(string $customerCountry): self
+    public function withCustomerCountry(?string $customerCountry): self
     {
         $result = clone $this;
         $result->customerCountry = $customerCountry;
         return $result;
     }
 
-    public function withCustomerEmail(string $customerEmail): self
+    public function withCustomerEmail(?string $customerEmail): self
     {
         $result = clone $this;
         $result->customerEmail = $customerEmail;
         return $result;
     }
 
-    public function withCustomerTelephone(string $customerTelephone): self
+    public function withCustomerTelephone(?string $customerTelephone): self
     {
         $result = clone $this;
         $result->customerTelephone = $customerTelephone;
         return $result;
     }
 
-    public function withCustomerReference(string $customerReference): self
+    public function withCustomerReference(?string $customerReference): self
     {
         $result = clone $this;
         $result->customerReference = $customerReference;
         return $result;
     }
 
-    public function withCustomerNotes(string $customerNotes): self
+    public function withCustomerNotes(?string $customerNotes): self
     {
         $result = clone $this;
         $result->customerNotes = $customerNotes;
         return $result;
     }
 
-    public function withDeliveryCompany(string $customerDeliveryCompany): self
+    public function withDeliveryCompany(?string $customerDeliveryCompany): self
     {
         $result = clone $this;
         $result->deliveryCompany = $customerDeliveryCompany;
         return $result;
     }
 
-    public function withDeliveryName(string $deliveryName): self
+    public function withDeliveryName(?string $deliveryName): self
     {
         $result = clone $this;
         $result->deliveryName = $deliveryName;
         return $result;
     }
 
-    public function withDeliveryAddress1(string $deliveryAddress1): self
+    public function withDeliveryAddress1(?string $deliveryAddress1): self
     {
         $result = clone $this;
         $result->deliveryAddress1 = $deliveryAddress1;
         return $result;
     }
 
-    public function withDeliveryAddress2(string $deliveryAddress2): self
+    public function withDeliveryAddress2(?string $deliveryAddress2): self
     {
         $result = clone $this;
         $result->deliveryAddress2 = $deliveryAddress2;
         return $result;
     }
 
-    public function withDeliveryAddress3(string $deliveryAddress3): self
+    public function withDeliveryAddress3(?string $deliveryAddress3): self
     {
         $result = clone $this;
         $result->deliveryAddress3 = $deliveryAddress3;
         return $result;
     }
 
-    public function withDeliveryCity(string $deliveryCity): self
+    public function withDeliveryCity(?string $deliveryCity): self
     {
         $result = clone $this;
         $result->deliveryCity = $deliveryCity;
         return $result;
     }
 
-    public function withDeliveryCounty(string $deliveryCounty): self
+    public function withDeliveryCounty(?string $deliveryCounty): self
     {
         $result = clone $this;
         $result->deliveryCounty = $deliveryCounty;
         return $result;
     }
 
-    public function withDeliveryPostcode(string $deliveryPostcode): self
+    public function withDeliveryPostcode(?string $deliveryPostcode): self
     {
         $result = clone $this;
         $result->deliveryPostcode = $deliveryPostcode;
         return $result;
     }
 
-    public function withDeliveryCountry(string $deliveryCountry): self
+    public function withDeliveryCountry(?string $deliveryCountry): self
     {
         $result = clone $this;
         $result->deliveryCountry = $deliveryCountry;
         return $result;
     }
 
-    public function withDeliveryTelephone(string $deliveryTelephone): self
+    public function withDeliveryTelephone(?string $deliveryTelephone): self
     {
         $result = clone $this;
         $result->deliveryTelephone = $deliveryTelephone;
         return $result;
     }
 
-    public function withShippingMethod(string $shippingMethod): self
+    public function withShippingMethod(?string $shippingMethod): self
     {
         $result = clone $this;
         $result->shippingMethod = $shippingMethod;
         return $result;
     }
 
-    public function withVoucherCode(string $voucherCode): self
+    public function withVoucherCode(?string $voucherCode): self
     {
         $result = clone $this;
         $result->voucherCode = $voucherCode;
         return $result;
     }
 
-    public function withTradeSale(bool $tradeSale): self
+    public function withTradeSale(?bool $tradeSale): self
     {
         $result = clone $this;
         $result->tradeSale = $tradeSale;
         return $result;
     }
 
-    public function withActualCourierCost(string $actualCourierCost): self
+    public function withActualCourierCost(?string $actualCourierCost): self
     {
         $result = clone $this;
         $result->actualCourierCost = $actualCourierCost;
