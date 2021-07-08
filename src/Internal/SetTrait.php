@@ -73,7 +73,7 @@ trait SetTrait
     public function add(self $otherSet): self
     {
         if ($otherSet->overlaps($this)) {
-            throw new FredhopperDataException;
+            throw new VoloDataException;
         }
         $result = new self;
         $result->items = \array_merge($this->items, $otherSet->items);
